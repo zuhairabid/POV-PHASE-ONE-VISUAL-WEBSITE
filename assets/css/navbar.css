@@ -26,6 +26,7 @@
  }
 
  .nav-logo-text {
+    cursor: pointer;
      /* position: absolute; */
      /* left: 50%; */
      /* transform: translateX(-50%); */
@@ -227,7 +228,30 @@
              /* transform: none;
              line-height: 1;
              text-align: center; */
+             /* slightly shrink the text logo on very small widths */
+             transform: scale(0.8);
          }
-
      }
  }
+
+/* keep the "Book a Shoot" call-to-action visible even when the menu is collapsed */
+@media (max-width: 1399px) {
+    .btn-book {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        z-index: 1200;
+        height: 48px;
+        padding: 0 24px;
+    }
+
+    /* remove the button inside the sliding panel when closed to avoid duplicates */
+    .nav-links:not(.active) a.btn-book {
+        display: none;
+    }
+
+    /* keep it visible inside nav when the panel is open */
+    .nav-links.active a.btn-book {
+        display: block;
+    }
+}

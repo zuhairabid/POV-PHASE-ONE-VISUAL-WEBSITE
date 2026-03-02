@@ -64,6 +64,10 @@ body {
   transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
 
+a{
+  text-decoration: none;
+}
+
 /* ─── SCROLLBAR ─── */
 ::-webkit-scrollbar {
   width: 5px;
