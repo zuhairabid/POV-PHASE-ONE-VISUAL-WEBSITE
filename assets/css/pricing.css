@@ -1,7 +1,10 @@
 .pricing-section {
   background: var(--white);
 }
-
+.pricing-section .section-title,.section-sub{
+  text-align:center;
+  margin: 25px auto;
+}
 .pricing-tabs {
   display: flex;
   gap: 0;
@@ -9,6 +12,7 @@
   border-radius: 6px;
   width: fit-content;
   overflow: hidden;
+  margin: auto;
   margin-bottom: 56px;
 }
 

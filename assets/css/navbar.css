@@ -69,33 +69,7 @@ nav {
   .nav-links a:not(.pov-btn):hover { color: var(--black); }
   .nav-links a:not(.pov-btn):hover::after { transform: scaleX(1); }
 
-  /* Book button */
-  .pov-btn {
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-    background: linear-gradient(135deg, #D49B54, #b8782e);
-    border-radius: 4px;
-    transition: opacity 0.2s, transform 0.2s;
-  }
-  .pov-btn:hover { opacity: 0.88; transform: translateY(-1px); }
-  .btn-inner {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    height: 48px;
-    padding: 0 20px;
-  }
-  .btn-inner .icon svg { width: 20px; height: 20px; display: block; }
-  .btn-inner .label {
-    font-family: 'Raleway', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: 0.5px;
-    white-space: nowrap;
-  }
-
+  
   /* Theme toggle */
   .theme-toggle {
     background: transparent;
@@ -140,50 +114,6 @@ nav {
 
   /* Desktop: hide left book btn */
   #nav-rspn-btn { display: none; }
-
-  /* ─── HERO ─── */
-  .hero {
-    margin-top: 72px;
-    height: calc(100vh - 72px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    text-align: center;
-    padding: 0 20px;
-    background: radial-gradient(ellipse at 60% 40%, rgba(212,155,84,0.13) 0%, transparent 65%),
-                radial-gradient(ellipse at 20% 80%, rgba(212,155,84,0.07) 0%, transparent 50%);
-  }
-  .hero h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(36px, 6vw, 80px);
-    font-weight: 700;
-    color: var(--black);
-    letter-spacing: -0.02em;
-    line-height: 1.05;
-    transition: color 0.4s;
-  }
-  .hero h1 span { color: var(--gold); }
-  .hero p {
-    font-size: clamp(14px, 2vw, 18px);
-    color: var(--slate);
-    max-width: 480px;
-    line-height: 1.7;
-  }
-  .resize-note {
-    margin-top: 32px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    border: 1px solid var(--divider);
-    border-radius: 999px;
-    padding: 10px 22px;
-    font-size: 12px;
-    color: var(--slate);
-    letter-spacing: 0.5px;
-  }
-  .resize-note span { color: var(--gold); font-weight: 600; }
 
   /* ─── MOBILE ─── */
   @media (max-width: 1399px) {
