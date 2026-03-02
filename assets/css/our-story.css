@@ -1,0 +1,52 @@
+.cta-section {
+  background: var(--gold-pale);
+  border-top: 1px solid var(--gold-border);
+  border-bottom: 1px solid var(--gold-border);
+  padding: 100px 0;
+}
+
+.story-inner {
+  display: block;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.story-inner h2 {
+  font-family: var(--serif);
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--black);
+}
+
+.story-inner h2 em {
+  font-style: italic;
+  color: var(--gold);
+  display: block;
+}
+
+.story-inner p {
+  font-size: 16px;
+  color: var(--slate);
+  margin-top: 16px;
+  line-height: 1.6;
+}
+
+@media screen and (max-width: 768px) {
+  .story-inner {
+    padding: 0 24px;
+    text-align: center;
+  }
+  .story-inner h2 {
+    font-size: 36px;
+  }
+  .story-inner h2 em {
+    display: inline;
+  }
+  .story-inner p {
+    font-size: 14px;
+  }
+  
+  
+}

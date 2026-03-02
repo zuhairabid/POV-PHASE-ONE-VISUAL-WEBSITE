@@ -1,0 +1,154 @@
+/* ─── PROCESS SECTION ─── */
+    .process-section {
+      background: var(--mist);
+      padding: 80px 20px;
+      width: 100%;
+    }
+
+    /* ─── STEPS WRAPPER ─── */
+    .process-steps {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      margin-top: 56px;
+    }
+
+    /* ─── INDIVIDUAL STEP ─── */
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 16px;
+      flex: 1;
+      max-width: 240px;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .step.visible { opacity: 1; transform: translateY(0); }
+    .step:nth-child(1) { transition-delay: 0.00s; }
+    .step:nth-child(3) { transition-delay: 0.15s; }
+    .step:nth-child(5) { transition-delay: 0.30s; }
+    .step:nth-child(7) { transition-delay: 0.45s; }
+
+    /* ─── CONNECTOR ─── */
+    .step-connector {
+      flex: 0 0 clamp(16px, 4vw, 48px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold) 0%, var(--gold-border) 100%);
+      margin-top: 27px;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.4s ease 0.3s;
+    }
+
+    .step-connector.visible { opacity: 1; }
+
+    .step-connector::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.75) 50%, transparent 100%);
+      transform: translateX(-100%);
+    }
+
+    .step-connector.visible::after {
+      animation: shimmer-line 1s ease 0.6s forwards;
+    }
+
+    @keyframes shimmer-line {
+      to { transform: translateX(250%); }
+    }
+
+    /* ─── STEP NUMBER ─── */
+    .step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: white;
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .step:nth-child(1) .step-num {
+      background: var(--gold);
+      color: white;
+      box-shadow: 0 0 0 7px var(--gold-glow);
+    }
+
+    .step:hover .step-num {
+      transform: scale(1.12);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+    }
+
+    /* ─── TEXT ─── */
+    .step h4 {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 10px;
+      transition: color 0.2s ease;
+    }
+
+    .step:hover h4 { color: var(--gold); }
+
+    .step p {
+      font-size: 13px;
+      color: var(--slate);
+      line-height: 1.65;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 680px) {
+      .process-steps {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px 24px;
+        align-items: start;
+      }
+      .step-connector { display: none; }
+      .step { max-width: none; padding: 0; }
+    }
+
+    @media (max-width: 420px) {
+      .process-steps {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .step {
+        flex-direction: row;
+        text-align: left;
+        align-items: flex-start;
+        padding: 0 0 44px 0;
+        position: relative;
+      }
+      .step:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        left: 27px;
+        top: 56px;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(180deg, var(--gold) 0%, var(--gold-border) 100%);
+      }
+      .step-num {
+        flex-shrink: 0;
+        margin-bottom: 0;
+        margin-right: 20px;
+      }
+      .step-text { padding-top: 10px; }
+    }

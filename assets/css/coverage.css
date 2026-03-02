@@ -1,0 +1,114 @@
+.coverage-section { background: var(--white); }
+  .coverage-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .coverage-map {
+    background: var(--mist);
+    border: 1px solid var(--divider);
+    border-radius: 8px;
+    height: 400px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+ .coverage-map iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+  .coverage-info { }
+  .coverage-facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 36px;
+    margin-bottom: 36px;
+  }
+  .fact-box {
+    border: 1px solid var(--divider);
+    border-radius: 6px;
+    padding: 20px;
+    background: var(--mist);
+  }
+  .fact-box strong {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--black);
+    display: block;
+  }
+  .fact-box span { font-size: 12px; color: var(--slate); letter-spacing: 0.5px; }
+  .fact-box.gold-box { background: var(--gold-pale); border-color: var(--gold-border); }
+  .fact-box.gold-box strong { color: var(--gold); }
+
+  /*  */
+
+  /* ================================
+   COVERAGE SECTION RESPONSIVE
+   ================================ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+
+  .coverage-inner {
+    gap: 48px;
+  }
+
+  .coverage-map {
+    height: 350px;
+  }
+
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+
+  .coverage-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .coverage-map {
+    height: 300px;
+    order: 2; /* optional: puts map above text */
+  }
+
+  .coverage-content
+ {
+    text-align: center;
+}
+
+  .coverage-facts {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .fact-box {
+    padding: 18px;
+  }
+
+  .fact-box strong {
+    font-size: 24px;
+  }
+
+}
+
+
+/* Small Mobile */
+@media (max-width: 480px) {
+
+  .coverage-map {
+    height: 260px;
+  }
+
+  .coverage-facts {
+    margin-top: 28px;
+    margin-bottom: 28px;
+  }
+
+}
