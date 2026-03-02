@@ -69,3 +69,7 @@ document.querySelectorAll('.pricing-table-wrapper').forEach(wrapper => {
     }
   });
 });
+
+// document.getElementById('scrollBtn').addEventListener('click', () => {
+//     document.getElementById('process').scrollIntoView({ behavior: 'smooth' });
+//   });

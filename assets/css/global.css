@@ -663,3 +663,72 @@ section {
   }
 
 }
+/* Scroll arrow */
+/* ─── SCROLL ARROW ─── */
+  .scroll-arrow {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 52px;
+    height: 52px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Desktop only */
+  }
+
+  /* Rotating dashed circle */
+  .scroll-arrow .ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px dashed rgba(212, 155, 84, 0.45);
+    animation: spin 8s linear infinite;
+  }
+
+  /* Solid inner circle */
+  .scroll-arrow .circle {
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    border: 1px solid rgba(212, 155, 84, 0.3);
+    background: rgba(212, 155, 84, 0.06);
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .scroll-arrow:hover .circle {
+    background: rgba(212, 155, 84, 0.18);
+    border-color: rgba(212, 155, 84, 0.7);
+  }
+
+  /* Arrow SVG bouncing */
+  .scroll-arrow .arrow-icon {
+    position: relative;
+    z-index: 2;
+    color: #D49B54;
+    animation: bounce 1.6s ease-in-out infinite;
+  }
+
+  /* Hide on mobile */
+  @media (max-width: 768px) {
+    .scroll-arrow { display: none; }
+  }
+
+  /* ─── KEYFRAMES ─── */
+  @keyframes bounce {
+    0%, 100% { transform: translateY(-3px); opacity: 0.6; }
+    50%       { transform: translateY(3px);  opacity: 1;   }
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  /* pulse glow on hover */
+  .scroll-arrow:hover .arrow-icon {
+    animation: bounce 0.9s ease-in-out infinite;
+    color: #e8b06a;
+  }
