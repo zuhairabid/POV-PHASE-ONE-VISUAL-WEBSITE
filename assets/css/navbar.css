@@ -1,279 +1,258 @@
- /* ─── NAVBAR ─── */
- nav {
-     position: fixed;
-     top: 0;
-     left: 0;
-     right: 0;
-     height: 72px;
-     background: var(--nav-bg);
-     backdrop-filter: blur(16px);
-     border-bottom: 1px solid var(--divider);
-     display: flex;
-     align-items: center;
-     justify-content: space-between;
-     padding: 0 60px;
-     z-index: 1000;
-     transition: box-shadow 0.3s, background-color 0.4s ease, border-color 0.4s ease;
-     box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
- }
+nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 72px;
+    background: var(--nav-bg);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--divider);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px;
+    z-index: 1000;
+    transition: box-shadow 0.3s, background-color 0.4s, border-color 0.4s;
+    box-shadow: rgba(17,12,46,0.15) 0px 48px 100px 0px;
+  }
+  nav.scrolled { box-shadow: var(--shadow-md); }
 
- nav.scrolled {
-     box-shadow: var(--shadow-md);
- }
-
- .nav-logo img {
-     width: 133px;
- }
-
- .nav-logo-text {
+  /* Logo */
+  .nav-logo-text {
     cursor: pointer;
-     /* position: absolute; */
-     /* left: 50%; */
-     /* transform: translateX(-50%); */
-     line-height: 1;
-     text-align: center;
- }
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+  }
+  .phase-one {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    transition: color 0.4s;
+  }
+  .visuals {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
 
- nav .phase-one {
-     font-family: 'Gotham-Bold', sans-serif;
-     /* Matches the name in @font-face */
-     font-size: 28px;
-     text-transform: uppercase;
-     color: var(--black);
-     font-weight: 600;
- }
+  /* Nav links */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a:not(.pov-btn) {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--slate);
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a:not(.pov-btn)::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 0;
+    height: 1px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s;
+  }
+  .nav-links a:not(.pov-btn):hover { color: var(--black); }
+  .nav-links a:not(.pov-btn):hover::after { transform: scaleX(1); }
 
- nav .visuals {
-     font-family: 'Gotham-Bold', sans-serif;
-     /* Matches the name in @font-face */
-     font-size: 17px;
-     letter-spacing: 0.4em;
-     color: #D49B54;
-     /* The gold color from the logo */
-     text-transform: uppercase;
-     font-weight: 600;
- }
+  /* Book button */
+  .pov-btn {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    background: linear-gradient(135deg, #D49B54, #b8782e);
+    border-radius: 4px;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .pov-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-inner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 48px;
+    padding: 0 20px;
+  }
+  .btn-inner .icon svg { width: 20px; height: 20px; display: block; }
+  .btn-inner .label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
 
- .nav-links {
-     display: flex;
-     align-items: center;
-     gap: 36px;
-     list-style: none;
- }
+  /* Theme toggle */
+  .theme-toggle {
+    background: transparent;
+    border: 1px solid var(--divider);
+    color: var(--black);
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .theme-toggle:hover {
+    background: var(--mist);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  [data-theme="dark"] .theme-toggle .sun-icon { display: block; }
+  [data-theme="dark"] .theme-toggle .moon-icon { display: none; }
+  .theme-toggle .sun-icon { display: none; }
+  .theme-toggle .moon-icon { display: block; }
 
- .nav-links a:not(.pov-btn) {
-     text-decoration: none;
-     font-size: 13px;
-     font-weight: 500;
-     color: var(--slate);
-     letter-spacing: 0.5px;
-     transition: color 0.2s;
-     position: relative;
- }
-
- .nav-links a:not(.pov-btn)::after {
-     content: '';
-     position: absolute;
-     bottom: -4px;
-     left: 0;
-     right: 0;
-     height: 1px;
-     background: var(--gold);
-     transform: scaleX(0);
-     transform-origin: left;
-     transition: transform 0.25s;
- }
-
- .nav-links a:not(.pov-btn):hover {
-     color: var(--black);
- }
-
- .nav-links a:not(.pov-btn):hover::after {
-     transform: scaleX(1);
- }
-
- /* ─── THEME TOGGLE ─── */
- .theme-toggle {
-     background: transparent;
-     border: 1px solid var(--divider);
-     color: var(--black);
-     width: 40px;
-     height: 40px;
-     border-radius: 50%;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     cursor: pointer;
-     transition: all 0.3s ease;
-     font-size: 18px;
- }
-
- .theme-toggle:hover {
-     background: var(--mist);
-     border-color: var(--gold);
-     color: var(--gold);
- }
-
- @media (max-width: 1399px) {
-     .theme-toggle {
-         position: fixed;
-         top: 16px;
-         right: 70px;
-         z-index: 1200;
-         background: var(--nav-bg);
-         backdrop-filter: blur(8px);
-     }
- }
-
- [data-theme="dark"] .theme-toggle .sun-icon {
-     display: block;
- }
-
- [data-theme="dark"] .theme-toggle .moon-icon {
-     display: none;
- }
-
- .theme-toggle .sun-icon {
-     display: none;
- }
-
- .theme-toggle .moon-icon {
-     display: block;
- }
-
- /* ─── MOBILE TOGGLE ICON ─── */
- .menu-toggle {
-     display: none;
-     flex-direction: column;
-     cursor: pointer;
-     gap: 6px;
-     z-index: 1100;
- }
-
- .bar {
-     width: 25px;
-     height: 3px;
-     background-color: var(--black);
-     display: block;
-     transition: all 0.3s ease-in-out;
-     border-radius: 2px;
- }
-
- /* ─── THE CROSS ANIMATION ─── */
- #mobile-menu.is-active .bar:nth-child(2) {
-     opacity: 0;
-     transform: translateX(-20px);
- }
-
- #mobile-menu.is-active .bar:nth-child(1) {
-     transform: translateY(9px) rotate(45deg);
- }
-
- #mobile-menu.is-active .bar:nth-child(3) {
-     transform: translateY(-9px) rotate(-45deg);
- }
-
- /* ─── MEDIA QUERY (Mobile/Tablet) ─── */
- @media (max-width: 1399px) {
-     nav {
-         padding: 0 30px;
-     }
-
-     .menu-toggle {
-         display: flex;
-     }
-
-     .nav-links {
-         position: fixed;
-         top: 0;
-         right: -100%;
-         width: 100%;
-         height: 100vh;
-         background: var(--white);
-         display: flex;
-         flex-direction: column;
-         justify-content: center;
-         align-items: center;
-         transition: 0.5s;
-         box-shadow: var(--shadow-md);
-         gap: 20px;
-         z-index: 1000;
-     }
-
-     .nav-links.active {
-         right: 0;
-     }
-
-     .nav-links li {
-         width: 100%;
-         text-align: center;
-         display: flex;
-         justify-content: center;
-     }
-
-     .nav-links a:not(.pov-btn) {
-         display: block;
-         padding: 15px 0;
-         font-size: 20px;
-     }
-
-     /* Hide text logo on very small screens to prevent overlap */
-     @media (max-width: 480px) {
-         nav .nav-logo {
-             display: none;
-         }
-
-         nav .nav-logo-text {
-             position: relative;
-             /* transform: none;
-             line-height: 1;
-             text-align: center; */
-         }
-
-     }
- }
-
-
-/* Hide on desktop, show on mobile */
-#nav-rspn-btn {
+  /* Hamburger */
+  .menu-toggle {
     display: none;
-}
+    flex-direction: column;
+    cursor: pointer;
+    gap: 6px;
+    z-index: 1100;
+  }
+  .bar {
+    width: 25px; height: 3px;
+    background-color: var(--black);
+    display: block;
+    transition: all 0.3s ease-in-out;
+    border-radius: 2px;
+  }
+  #mobile-menu.is-active .bar:nth-child(2) { opacity: 0; transform: translateX(-20px); }
+  #mobile-menu.is-active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+  #mobile-menu.is-active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-@media (max-width: 1399px) {
+  /* Desktop: hide left book btn */
+  #nav-rspn-btn { display: none; }
+
+  /* ─── HERO ─── */
+  .hero {
+    margin-top: 72px;
+    height: calc(100vh - 72px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    text-align: center;
+    padding: 0 20px;
+    background: radial-gradient(ellipse at 60% 40%, rgba(212,155,84,0.13) 0%, transparent 65%),
+                radial-gradient(ellipse at 20% 80%, rgba(212,155,84,0.07) 0%, transparent 50%);
+  }
+  .hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(36px, 6vw, 80px);
+    font-weight: 700;
+    color: var(--black);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    transition: color 0.4s;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero p {
+    font-size: clamp(14px, 2vw, 18px);
+    color: var(--slate);
+    max-width: 480px;
+    line-height: 1.7;
+  }
+  .resize-note {
+    margin-top: 32px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--divider);
+    border-radius: 999px;
+    padding: 10px 22px;
+    font-size: 12px;
+    color: var(--slate);
+    letter-spacing: 0.5px;
+  }
+  .resize-note span { color: var(--gold); font-weight: 600; }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 1399px) {
     nav {
-        padding: 0 16px;
-        justify-content: space-between;
-        position: relative;
+      padding: 0 16px;
+      position: relative;
     }
+    .menu-toggle { display: flex; }
 
-    /* Show the left book button on mobile */
+    /* Show left book button */
     #nav-rspn-btn {
-        display: flex;
-        position: static; /* override any fixed positioning */
-        z-index: 1200;
-        margin-right: 0;
+      display: flex;
+      position: static;
+      z-index: 1200;
+      flex-shrink: 0;
     }
 
-    /* Center the logo absolutely */
-    .nav-logo-text {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
+    /* Center logo absolutely */
+    nav > a:has(.nav-logo-text) {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1050;
     }
 
-    /* Hide the Book button inside the nav-links drawer on mobile */
-    .nav-links li:has(.btn-book) {
-        display: none;
+    /* Full-screen drawer */
+    .nav-links {
+      position: fixed;
+      top: 0; right: -100%;
+      width: 100%; height: 100vh;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: right 0.45s cubic-bezier(.77,0,.18,1);
+      box-shadow: var(--shadow-md);
+      gap: 20px;
+      z-index: 1000;
     }
-}
+    .nav-links.active { right: 0; }
+    .nav-links li {
+      width: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+    }
+    .nav-links a:not(.pov-btn) {
+      display: block;
+      padding: 15px 0;
+      font-size: 20px;
+    }
+    /* Hide duplicate book btn in drawer */
+    .nav-links li:has(.btn-book) { display: none; }
 
-@media (max-width: 582px) {
-    nav .nav-logo-text {
-        transform: translateX(-50%) scale(0.7); /* preserve centering with scale */
+    .theme-toggle {
+      position: fixed;
+      top: 16px; right: 70px;
+      z-index: 1200;
+      background: var(--nav-bg);
+      backdrop-filter: blur(8px);
     }
+  }
 
-    #nav-rspn-btn {
-        transform: scale(0.7);
-        transform-origin: left center;
+  @media (max-width: 582px) {
+    nav > a:has(.nav-logo-text) {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) scale(0.75);
     }
-}
+    #nav-rspn-btn { transform: scale(0.78); transform-origin: left center; }
+  }
