@@ -153,6 +153,7 @@ body {
 /* ─── SECTION COMMON ─── */
 section {
   padding: 100px 0;
+  border-bottom: 2px solid var(--divider);
 }
 
 .container {
