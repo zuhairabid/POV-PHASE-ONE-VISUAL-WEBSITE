@@ -232,3 +232,48 @@
 
      }
  }
+
+
+/* Hide on desktop, show on mobile */
+#nav-rspn-btn {
+    display: none;
+}
+
+@media (max-width: 1399px) {
+    nav {
+        padding: 0 16px;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    /* Show the left book button on mobile */
+    #nav-rspn-btn {
+        display: flex;
+        position: static; /* override any fixed positioning */
+        z-index: 1200;
+        margin-right: 0;
+    }
+
+    /* Center the logo absolutely */
+    .nav-logo-text {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* Hide the Book button inside the nav-links drawer on mobile */
+    .nav-links li:has(.btn-book) {
+        display: none;
+    }
+}
+
+@media (max-width: 582px) {
+    nav .nav-logo-text {
+        transform: translateX(-50%) scale(0.7); /* preserve centering with scale */
+    }
+
+    #nav-rspn-btn {
+        transform: scale(0.7);
+        transform-origin: left center;
+    }
+}
