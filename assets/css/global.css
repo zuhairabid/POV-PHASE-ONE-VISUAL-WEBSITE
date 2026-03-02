@@ -14,6 +14,31 @@
   --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.07);
   --shadow-md: 0 8px 40px rgba(0, 0, 0, 0.10);
   --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.13);
+  --nav-bg: rgba(255, 255, 255, 0.96);
+  --footer-bg: var(--black);
+  --footer-text: #888888;
+  --footer-title: #FFFFFF;
+  --map-filter: none;
+  --construction-bg: var(--black);
+}
+
+[data-theme="dark"] {
+  --black: #F8F6F2;
+  --charcoal: #E8E0D4;
+  --slate: #AAAAAA;
+  --mist: #1A1A1A;
+  --white: #111111;
+  --divider: #2A2A2A;
+  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 40px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.6);
+  --nav-bg: rgba(17, 17, 17, 0.96);
+  --gold-pale: #2A241A;
+  --footer-bg: #000000;
+  --footer-text: #AAAAAA;
+  --footer-title: #F8F6F2;
+  --map-filter: invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%);
+  --construction-bg: #1A1A1A;
 }
 
 *,
@@ -24,7 +49,8 @@
   padding: 0;
 }
 
-html ,body{
+html,
+body {
   scroll-behavior: smooth;
 }
 
@@ -35,6 +61,7 @@ body {
   overflow-x: hidden;
   font-size: 16px;
   line-height: 1.6;
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
 
 /* ─── SCROLLBAR ─── */
@@ -204,66 +231,414 @@ section {
 }
 
 /* BTN's */
-.btn-primary {
-  background: var(--black);
-  color: white;
-  padding: 14px 32px;
-  border-radius: 4px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: 2px solid var(--black);
-  transition: background 0.2s, color 0.2s, transform 0.15s;
+/* ─────────────────────────────────────────────
+   POV ANIMATED BUTTONS
+───────────────────────────────────────────── */
+.pov-btn {
+  position: relative;
+  width: fit-content;
+  height: 58px;
+  border: none;
   cursor: pointer;
+  font-family: var(--sans);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  outline: none;
+  -webkit-font-smoothing: antialiased;
+  text-decoration: none;
+  transition: all 0.4s ease;
 }
 
-.btn-primary:hover {
-  background: var(--charcoal);
-  transform: translateY(-2px);
+/* inner layout — icon + label sit together, centered as a unit */
+.pov-btn .btn-inner {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  position: relative;
+  z-index: 2;
+  transition: gap .4s cubic-bezier(.77, 0, .18, 1), color 0.4s ease;
 }
 
-.btn-secondary {
+.pov-btn:hover .btn-inner {
+  gap: 13px;
+}
+
+/* icon wrapper */
+.pov-btn .icon {
+  width: 0;
+  overflow: hidden;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    width .4s cubic-bezier(.77, 0, .18, 1),
+    opacity .3s .05s;
+  flex-shrink: 0;
+}
+
+.pov-btn:hover .icon {
+  width: 26px;
+  opacity: 1;
+}
+
+.pov-btn .icon svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* label */
+.pov-btn .label {
+  position: relative;
+  white-space: nowrap;
+  transition: color 0.4s ease;
+}
+
+/* ─── BTN 1 — BOOK A SHOOT (Gold) ─── */
+.btn-book {
+  background: var(--gold);
+  color: #FFFFFF;
+}
+
+.btn-book::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--black);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .45s cubic-bezier(.77, 0, .18, 1);
+  z-index: 1;
+}
+
+.btn-book:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-book:hover .label {
+  color: var(--white);
+}
+
+.btn-book:hover .icon svg rect,
+.btn-book:hover .icon svg path,
+.btn-book:hover .icon svg circle,
+.btn-book:hover .icon svg line {
+  stroke: var(--white);
+}
+
+/* flash on click */
+.btn-book::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: #FFFFFF;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.btn-book:active::after {
+  animation: flash .25s ease-out;
+}
+
+@keyframes flash {
+  0% {
+    opacity: .5
+  }
+
+  100% {
+    opacity: 0
+  }
+}
+
+.btn-book .cam-lens {
+  transition: transform .35s .1s cubic-bezier(.34, 1.56, .64, 1);
+}
+
+.btn-book:hover .cam-lens {
+  transform: scale(1.2);
+}
+
+.btn-book .cam-aperture {
+  opacity: 0;
+  transform: scale(.4);
+  transition: opacity .25s .25s, transform .3s .25s cubic-bezier(.34, 1.56, .64, 1);
+}
+
+.btn-book:hover .cam-aperture {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ─── BTN 2 — VIEW PRICING (Black) ─── */
+.btn-pricing {
+  background: var(--black);
+  color: var(--white);
+  border: none;
+}
+
+.btn-pricing::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .45s cubic-bezier(.77, 0, .18, 1);
+  z-index: 1;
+}
+
+.btn-pricing:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-pricing:hover {
+  color: var(--white);
+}
+
+.btn-pricing .icon svg path,
+.btn-pricing .icon svg line,
+.btn-pricing .icon svg circle {
+  stroke: #FFFFFF;
+}
+
+.btn-pricing .tag-g {
+  transform-origin: 50% 20%;
+  transform: rotate(-25deg) translateY(-2px);
+  transition: transform .45s .05s cubic-bezier(.34, 1.56, .64, 1);
+}
+
+.btn-pricing:hover .tag-g {
+  transform: rotate(0deg) translateY(0);
+}
+
+/* ─── BTN 3 — OUR SERVICES (Outline Black) ─── */
+.btn-services {
   background: transparent;
   color: var(--black);
-  padding: 14px 32px;
-  border-radius: 4px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  text-decoration: none;
   border: 2px solid var(--black);
-  transition: background 0.2s, color 0.2s, transform 0.15s;
-  cursor: pointer;
 }
 
-.btn-secondary:hover {
+.btn-services::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: var(--black);
-  color: white;
-  transform: translateY(-2px);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .45s cubic-bezier(.77, 0, .18, 1);
+  z-index: 1;
 }
 
-.btn-gold {
+.btn-services:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-services:hover .label {
+  color: var(--white);
+}
+
+.btn-services .star-ray {
+  transform-origin: 11px 11px;
+  opacity: 0;
+  transform: scale(.2);
+  transition: opacity .2s, transform .35s cubic-bezier(.34, 1.56, .64, 1);
+}
+
+.btn-services:hover .star-ray:nth-child(n) {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.btn-services:hover .star-ray:nth-child(1) {
+  transition-delay: .05s;
+}
+
+.btn-services:hover .star-ray:nth-child(2) {
+  transition-delay: .10s;
+}
+
+.btn-services:hover .star-ray:nth-child(3) {
+  transition-delay: .15s;
+}
+
+.btn-services:hover .star-ray:nth-child(4) {
+  transition-delay: .20s;
+}
+
+.btn-services:hover .star-ray:nth-child(5) {
+  transition-delay: .25s;
+}
+
+.btn-services:hover .star-ray:nth-child(6) {
+  transition-delay: .30s;
+}
+
+.btn-services:hover .star-ray:nth-child(7) {
+  transition-delay: .35s;
+}
+
+.btn-services:hover .star-ray:nth-child(8) {
+  transition-delay: .40s;
+}
+
+.btn-services .star-core {
+  fill: currentColor;
+  transition: fill .2s .1s;
+}
+
+.btn-services:hover .star-core {
+  fill: var(--gold);
+}
+
+.btn-services:hover .icon svg circle {
+  stroke: var(--white);
+}
+
+/* ─── BTN 4 — REAL ESTATE PACKAGE (dark) ─── */
+.btn-re .tab-btn.active {
+  background: var(--black);
+  color: var(--white);
+}
+
+.btn-realestate {
+  background: var(--black);
+  color: var(--white);
+}
+
+.btn-realestate::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: var(--gold);
-  color: white;
-  padding: 14px 32px;
-  border-radius: 4px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: 2px solid var(--gold);
-  transition: background 0.2s, transform 0.15s;
-  cursor: pointer;
-  display: inline-block;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .45s cubic-bezier(.77, 0, .18, 1);
+  z-index: 1;
 }
 
-.btn-gold:hover {
-  background: var(--gold-light);
-  transform: translateY(-2px);
+.btn-realestate:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-realestate .house-walls {
+  transform: translateY(5px);
+  opacity: 0;
+  transition: transform .4s .05s cubic-bezier(.34, 1.56, .64, 1), opacity .3s .05s;
+}
+
+.btn-realestate:hover .house-walls {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.btn-realestate .house-roof {
+  transform: translateY(-6px) scaleY(.7);
+  transform-origin: bottom center;
+  opacity: 0;
+  transition: transform .4s .1s cubic-bezier(.34, 1.56, .64, 1), opacity .3s .1s;
+}
+
+.btn-realestate:hover .house-roof {
+  transform: translateY(0) scaleY(1);
+  opacity: 1;
+}
+
+.btn-realestate .house-door {
+  transform: scaleY(0);
+  transform-origin: bottom center;
+  transition: transform .3s .25s;
+}
+
+.btn-realestate:hover .house-door {
+  transform: scaleY(1);
+}
+
+/* ─── BTN 5 — CONSTRUCTION PACKAGE (gold) ─── */
+.btn-construction {
+  background: var(--gold);
+  color: var(--white);
+}
+
+.btn-construction::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--black);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .45s cubic-bezier(.77, 0, .18, 1);
+  z-index: 1;
+}
+
+.btn-construction:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-construction::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .12), transparent);
+  transform: translateX(-100%);
+  transition: transform .5s;
+  pointer-events: none;
+}
+
+.btn-construction:hover::after {
+  transform: translateX(100%);
+}
+
+.btn-construction .floor {
+  transform: scaleX(0);
+  transform-origin: left center;
+  opacity: 0;
+  transition: transform .25s, opacity .2s;
+}
+
+.btn-construction:hover .floor:nth-child(n) {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.btn-construction:hover .floor:nth-child(1) {
+  transition-delay: .00s;
+}
+
+.btn-construction:hover .floor:nth-child(2) {
+  transition-delay: .07s;
+}
+
+.btn-construction:hover .floor:nth-child(3) {
+  transition-delay: .14s;
+}
+
+.btn-construction:hover .floor:nth-child(4) {
+  transition-delay: .21s;
+}
+
+.btn-construction .crane-arm {
+  transform: translateX(-4px);
+  opacity: 0;
+  transition: transform .3s .28s cubic-bezier(.34, 1.56, .64, 1), opacity .2s .28s;
+}
+
+.btn-construction:hover .crane-arm {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.pov-btn:focus-visible {
+  box-shadow: 0 0 0 2px var(--mist), 0 0 0 4px var(--gold);
 }
 
 

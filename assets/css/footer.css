@@ -1,9 +1,10 @@
 /* ─── FOOTER ─── */
 footer {
-  background: var(--black);
-  color: white;
+  background: var(--footer-bg);
+  color: var(--footer-title);
   padding: 80px 0 40px;
   border-top: 3px solid var(--gold);
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* ─── FOOTER BRAND / LOGO LOCKUP ─── */
@@ -61,12 +62,12 @@ footer .nav-footer-logo-text .visuals {
   grid-template-columns: 2fr 1fr 1fr;
   gap: 60px;
   padding-bottom: 60px;
-  border-bottom: 1px solid #1e1e1e;
+  border-bottom: 1px solid var(--divider);
 }
 
 .footer-brand p {
   font-size: 14px;
-  color: #777;
+  color: var(--footer-text);
   line-height: 1.7;
   margin-top: 20px;
   /* max-width: 280px; */
@@ -91,7 +92,7 @@ footer .nav-footer-logo-text .visuals {
 
 .footer-col ul li a {
   font-size: 14px;
-  color: #888;
+  color: var(--footer-text);
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -110,7 +111,7 @@ footer .nav-footer-logo-text .visuals {
 
 .footer-bottom p {
   font-size: 12px;
-  color: #555;
+  color: var(--footer-text);
 }
 
 .footer-bottom a {
@@ -121,8 +122,8 @@ footer .nav-footer-logo-text .visuals {
 
 /* ─── DELIVERY STRIP ─── */
 .delivery-strip {
-  background: var(--black);
-  border-bottom: 1px solid #1e1e1e;
+  background: var(--footer-bg);
+  border-bottom: 1px solid var(--divider);
   padding: 16px 0;
   overflow: hidden;
 }
@@ -156,7 +157,7 @@ footer .nav-footer-logo-text .visuals {
 /* Tablet */
 @media (max-width: 1024px) {
   .footer-grid {
-    grid-template-columns: 1fr ;
+    grid-template-columns: 1fr;
     gap: 40px;
     text-align: center;
   }
@@ -165,7 +166,7 @@ footer .nav-footer-logo-text .visuals {
     justify-content: center;
   }
 
-  footer .footer-brand{
+  footer .footer-brand {
 
     grid-column: 1 / -1;
     gap: 20px;

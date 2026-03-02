@@ -5,7 +5,7 @@
      left: 0;
      right: 0;
      height: 72px;
-     background: rgba(255, 255, 255, 0.96);
+     background: var(--nav-bg);
      backdrop-filter: blur(16px);
      border-bottom: 1px solid var(--divider);
      display: flex;
@@ -13,8 +13,8 @@
      justify-content: space-between;
      padding: 0 60px;
      z-index: 1000;
-     transition: box-shadow 0.3s;
-         box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+     transition: box-shadow 0.3s, background-color 0.4s ease, border-color 0.4s ease;
+     box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
  }
 
  nav.scrolled {
@@ -26,9 +26,9 @@
  }
 
  .nav-logo-text {
-     position: absolute;
-     left: 50%;
-     transform: translateX(-50%);
+     /* position: absolute; */
+     /* left: 50%; */
+     /* transform: translateX(-50%); */
      line-height: 1;
      text-align: center;
  }
@@ -38,7 +38,7 @@
      /* Matches the name in @font-face */
      font-size: 28px;
      text-transform: uppercase;
-     color: #000000;
+     color: var(--black);
      font-weight: 600;
  }
 
@@ -60,7 +60,7 @@
      list-style: none;
  }
 
- .nav-links a {
+ .nav-links a:not(.pov-btn) {
      text-decoration: none;
      font-size: 13px;
      font-weight: 500;
@@ -70,7 +70,7 @@
      position: relative;
  }
 
- .nav-links a::after {
+ .nav-links a:not(.pov-btn)::after {
      content: '';
      position: absolute;
      bottom: -4px;
@@ -83,94 +83,137 @@
      transition: transform 0.25s;
  }
 
- .nav-links a:hover {
+ .nav-links a:not(.pov-btn):hover {
      color: var(--black);
  }
 
- .nav-links a:hover::after {
+ .nav-links a:not(.pov-btn):hover::after {
      transform: scaleX(1);
  }
 
- .nav-cta {
-     background: var(--gold);
-     color: white !important;
-     padding: 10px 24px;
-     border-radius: 4px;
-     font-weight: 600 !important;
-     letter-spacing: 0.8px;
-     transition: background 0.2s, transform 0.15s !important;
+ /* ─── THEME TOGGLE ─── */
+ .theme-toggle {
+     background: transparent;
+     border: 1px solid var(--divider);
+     color: var(--black);
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     transition: all 0.3s ease;
+     font-size: 18px;
  }
 
- .nav-cta::after {
-     display: none !important;
+ .theme-toggle:hover {
+     background: var(--mist);
+     border-color: var(--gold);
+     color: var(--gold);
  }
 
- .nav-cta:hover {
-     background: var(--gold-light) !important;
-     transform: translateY(-1px);
+ @media (max-width: 1399px) {
+     .theme-toggle {
+         position: fixed;
+         top: 16px;
+         right: 70px;
+         z-index: 1200;
+         background: var(--nav-bg);
+         backdrop-filter: blur(8px);
+     }
+ }
+
+ [data-theme="dark"] .theme-toggle .sun-icon {
+     display: block;
+ }
+
+ [data-theme="dark"] .theme-toggle .moon-icon {
+     display: none;
+ }
+
+ .theme-toggle .sun-icon {
+     display: none;
+ }
+
+ .theme-toggle .moon-icon {
+     display: block;
  }
 
  /* ─── MOBILE TOGGLE ICON ─── */
  .menu-toggle {
      display: none;
-     /* Hidden on desktop */
      flex-direction: column;
      cursor: pointer;
      gap: 6px;
+     z-index: 1100;
  }
 
  .bar {
      width: 25px;
      height: 3px;
      background-color: var(--black);
-     transition: 0.3s;
+     display: block;
+     transition: all 0.3s ease-in-out;
+     border-radius: 2px;
+ }
+
+ /* ─── THE CROSS ANIMATION ─── */
+ #mobile-menu.is-active .bar:nth-child(2) {
+     opacity: 0;
+     transform: translateX(-20px);
+ }
+
+ #mobile-menu.is-active .bar:nth-child(1) {
+     transform: translateY(9px) rotate(45deg);
+ }
+
+ #mobile-menu.is-active .bar:nth-child(3) {
+     transform: translateY(-9px) rotate(-45deg);
  }
 
  /* ─── MEDIA QUERY (Mobile/Tablet) ─── */
  @media (max-width: 1399px) {
      nav {
          padding: 0 30px;
-         /* Less padding on mobile */
      }
 
      .menu-toggle {
          display: flex;
-         /* Show hamburger */
-         z-index: 1001;
      }
 
-     /* Transform the list into a full-screen or dropdown menu */
      .nav-links {
          position: fixed;
-         top: 72px;
-         /* Height of your nav */
+         top: 0;
          right: -100%;
-         /* Start off-screen */
-         flex-direction: column;
-         background: white;
          width: 100%;
-         height: calc(100vh - 72px);
-         gap: 0;
-         transition: 0.4s;
+         height: 100vh;
+         background: var(--white);
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         transition: 0.5s;
          box-shadow: var(--shadow-md);
-         padding: 40px 0;
+         gap: 20px;
+         z-index: 1000;
      }
 
      .nav-links.active {
          right: 0;
-         /* Slide in when active */
      }
 
      .nav-links li {
          width: 100%;
          text-align: center;
+         display: flex;
+         justify-content: center;
      }
 
-     .nav-links a {
+     .nav-links a:not(.pov-btn) {
          display: block;
-         padding: 20px 0;
-         font-size: 18px;
-         /* Bigger links for thumb-tapping */
+         padding: 15px 0;
+         font-size: 20px;
      }
 
      /* Hide text logo on very small screens to prevent overlap */
@@ -186,71 +229,5 @@
              text-align: center; */
          }
 
-     }
- }
-
- /* ─── HAMBURGER BASE ─── */
- .menu-toggle {
-     display: none;
-     flex-direction: column;
-     cursor: pointer;
-     gap: 6px;
-     transition: all 0.3s ease-in-out;
- }
-
- .bar {
-     width: 25px;
-     height: 3px;
-     background-color: #000;
-     display: block;
-     transition: all 0.3s ease-in-out;
-     border-radius: 2px;
- }
-
- /* ─── THE CROSS ANIMATION ─── */
- /* When the 'is-active' class is added via JS */
-
- #mobile-menu.is-active .bar:nth-child(2) {
-     opacity: 0;
-     /* Hide the middle bar */
-     transform: translateX(-20px);
- }
-
- #mobile-menu.is-active .bar:nth-child(1) {
-     transform: translateY(9px) rotate(45deg);
-     /* Move down and rotate */
- }
-
- #mobile-menu.is-active .bar:nth-child(3) {
-     transform: translateY(-9px) rotate(-45deg);
-     /* Move up and rotate */
- }
-
- /* ─── MOBILE RESPONSIVENESS ─── */
- @media (max-width: 1399px) {
-     .menu-toggle {
-         display: flex;
-         z-index: 1002;
-         /* Ensure it stays above the menu overlay */
-     }
-
-     /* Ensure the menu slides in as before */
-     .nav-links {
-         position: fixed;
-         top: 0;
-         /* Cover the whole height if preferred, or 72px */
-         right: -100%;
-         width: 100%;
-         height: 100vh;
-         background: white;
-         display: flex;
-         flex-direction: column;
-         justify-content: center;
-         align-items: center;
-         transition: 0.5s;
-     }
-
-     .nav-links.active {
-         right: 0;
      }
  }

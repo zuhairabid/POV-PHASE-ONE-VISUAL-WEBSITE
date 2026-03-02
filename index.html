@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Phase One Visuals — Real Estate & Construction Media | NJ & PA</title>
   <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=Barlow:wght@400;500;600&display=swap"
     rel="stylesheet" />
 
   <title>Document</title>
@@ -19,15 +19,25 @@
   <link rel="stylesheet" href="/assets/css/coverage.css">
   <link rel="stylesheet" href="/assets/css/our-story.css">
   <link rel="stylesheet" href="/assets/css/footer.css">
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
 </head>
 
 <body>
   <!-- NAVBAR -->
 
   <nav id="navbar">
-    <a href="#" class="nav-logo">
+    <!-- <a href="#" class="nav-logo">
       <img src="/assets/img/logo.png" alt="">
-    </a>
+    </a> -->
     <div class="nav-logo-text">
       <p class="phase-one">PHASE ONE</p>
       <p class="visuals">VISUALS</p>
@@ -42,7 +52,51 @@
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#process">Process</a></li>
       <li><a href="#coverage">Coverage</a></li>
-      <li><a href="#book" class="nav-cta">Book a Shoot</a></li>
+      <li>
+        <a href="#book" class="pov-btn btn-book"
+          style="height: 48px; padding: 0 24px; border-radius: 4px; width: fit-content;">
+          <div class="btn-inner">
+            <div class="icon">
+              <svg viewBox="0 0 22 22" fill="none">
+                <rect x="1" y="6" width="20" height="14" rx="1.5" fill="none" stroke="white" stroke-width="1.2" />
+                <path d="M7 6 L8.5 3 L13.5 3 L15 6" fill="none" stroke="white" stroke-width="1.2" />
+                <g class="cam-lens">
+                  <circle cx="11" cy="13" r="4.5" fill="none" stroke="white" stroke-width="1.2" />
+                </g>
+                <g class="cam-aperture">
+                  <circle cx="11" cy="13" r="2" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1" />
+                  <line x1="11" y1="11.2" x2="11" y2="10" stroke="rgba(255,255,255,.5)" stroke-width=".7" />
+                  <line x1="11" y1="14.8" x2="11" y2="16" stroke="rgba(255,255,255,.5)" stroke-width=".7" />
+                  <line x1="9.2" y1="13" x2="8" y2="13" stroke="rgba(255,255,255,.5)" stroke-width=".7" />
+                  <line x1="12.8" y1="13" x2="14" y2="13" stroke="rgba(255,255,255,.5)" stroke-width=".7" />
+                </g>
+                <circle cx="17" cy="9" r="1" fill="rgba(255,255,255,.4)" />
+              </svg>
+            </div>
+            <span class="label">Book a Shoot</span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+      </li>
     </ul>
   </nav>
 
@@ -65,16 +119,74 @@
         realtors, developers and construction firms across New Jersey &amp; Pennsylvania.
       </p>
       <div class="hero-actions">
-        <a href="#pricing" class="btn-primary">View Pricing</a>
-        <a href="#sectors" class="btn-secondary">Our Services</a>
+        <a href="#pricing" class="pov-btn btn-pricing" style="width: 200px;">
+          <div class="btn-inner">
+            <div class="icon">
+              <svg viewBox="0 0 22 22" fill="none" style="overflow:visible">
+                <g class="tag-g">
+                  <path d="M4 2 L16 2 L20 11 L11 20 L2 11 Z" fill="none" stroke="currentColor" stroke-width="1.2"
+                    stroke-linejoin="round" />
+                  <circle cx="7" cy="6" r="1.5" fill="none" stroke="currentColor" stroke-width="1"
+                    style="opacity:0.7" />
+                  <line x1="9" y1="9" x2="16" y2="9" stroke="currentColor" stroke-width=".8" style="opacity:0.4" />
+                  <line x1="8.5" y1="12" x2="15" y2="12" stroke="currentColor" stroke-width=".8" style="opacity:0.4" />
+                  <line x1="8" y1="15" x2="14" y2="15" stroke="currentColor" stroke-width=".8" style="opacity:0.4" />
+                </g>
+              </svg>
+            </div>
+            <span class="label">View Pricing</span>
+          </div>
+        </a>
+        <a href="#sectors" class="pov-btn btn-services" style="width: 200px;">
+          <div class="btn-inner">
+            <div class="icon">
+              <svg viewBox="0 0 22 22" fill="none">
+                <g class="star-ray">
+                  <line x1="11" y1="2" x2="11" y2="5" stroke="var(--gold)" stroke-width="1.2" stroke-linecap="round" />
+                </g>
+                <g class="star-ray">
+                  <line x1="16.5" y1="3.8" x2="14.8" y2="5.5" stroke="var(--gold)" stroke-width="1.2"
+                    stroke-linecap="round" />
+                </g>
+                <g class="star-ray">
+                  <line x1="19.5" y1="9" x2="16.5" y2="9" stroke="var(--gold)" stroke-width="1.2"
+                    stroke-linecap="round" />
+                </g>
+                <g class="star-ray">
+                  <line x1="16.5" y1="14.2" x2="14.8" y2="12.5" stroke="var(--gold)" stroke-width="1.2"
+                    stroke-linecap="round" />
+                </g>
+                <g class="star-ray">
+                  <line x1="5.5" y1="3.8" x2="7.2" y2="5.5" stroke="var(--gold)" stroke-width="1.2"
+                    stroke-linecap="round" />
+                </g>
+                <g class="star-ray">
+                  <line x1="2.5" y1="9" x2="5.5" y2="9" stroke="var(--gold)" stroke-width="1.2"
+                    stroke-linecap="round" />
+                </g>
+                <g class="star-ray">
+                  <line x1="5.5" y1="14.2" x2="7.2" y2="12.5" stroke="var(--gold)" stroke-width="1.2"
+                    stroke-linecap="round" />
+                </g>
+                <g class="star-ray">
+                  <line x1="11" y1="16" x2="11" y2="13" stroke="var(--gold)" stroke-width="1.2"
+                    stroke-linecap="round" />
+                </g>
+                <circle class="star-core" cx="11" cy="9" r="4" fill="none" stroke="currentColor" stroke-width="1.2" />
+                <circle class="star-core" cx="11" cy="9" r="1.5" fill="currentColor" />
+              </svg>
+            </div>
+            <span class="label">Our Services</span>
+          </div>
+        </a>
       </div>
       <!-- <div class="hero-stats"> -->
-        <!-- <div class="stat"><strong>500+</strong><span>Properties Shot</span></div>
+      <!-- <div class="stat"><strong>500+</strong><span>Properties Shot</span></div>
         <div class="stat-divider"></div> -->
-        <!-- <div class="stat"><strong>24hr</strong><span>Stills Delivery</span></div>
+      <!-- <div class="stat"><strong>24hr</strong><span>Stills Delivery</span></div>
         <div class="stat-divider"></div>
         <div class="stat"><strong>NJ + PA</strong><span>Coverage Area</span></div> -->
-        <!-- <div class="stat-divider"></div>
+      <!-- <div class="stat-divider"></div>
         <div class="stat"><strong>98%</strong><span>Client Satisfaction</span></div> -->
       <!-- </div> -->
     </div>
@@ -151,7 +263,29 @@
           <li>Marketing Floor Plans</li>
           <li>Custom Property Website Included</li>
         </ul>
-        <a href="#pricing" class="btn-primary" style="width:fit-content;">View Real Estate Packages</a>
+        <a href="#pricing" class="pov-btn btn-realestate" style="width: 280px;">
+          <div class="btn-inner">
+            <div class="icon">
+              <svg viewBox="0 0 22 22" fill="none">
+                <line x1="1" y1="21" x2="21" y2="21" stroke="rgba(255,255,255,.35)" stroke-width=".8" />
+                <g class="house-walls">
+                  <rect x="4" y="11" width="14" height="10" fill="none" stroke="white" stroke-width="1.2" />
+                  <rect class="house-door" x="8.5" y="16" width="5" height="5" fill="none" stroke="var(--gold)"
+                    stroke-width="1" />
+                  <rect x="5" y="13" width="3.5" height="2.5" fill="none" stroke="rgba(255,255,255,.45)"
+                    stroke-width=".8" />
+                  <rect x="13.5" y="13" width="3.5" height="2.5" fill="none" stroke="rgba(255,255,255,.45)"
+                    stroke-width=".8" />
+                </g>
+                <g class="house-roof">
+                  <polyline points="2,11 11,2 20,11" fill="none" stroke="var(--gold)" stroke-width="1.3"
+                    stroke-linejoin="round" />
+                </g>
+              </svg>
+            </div>
+            <span class="label">Real Estate Packages</span>
+          </div>
+        </a>
       </div>
       <div class="sector-panel construction">
         <div class="sector-tag">Construction &amp; Development</div>
@@ -167,14 +301,40 @@
           <li>360° Interactive Capture</li>
           <li>Secure Online Project Gallery</li>
         </ul>
-        <a href="#pricing" class="btn-gold" style="width:fit-content;"
-          onclick="document.getElementById('tab-construction').click()">View Construction Packages</a>
+        <a href="#pricing" class="pov-btn btn-construction" style="width: 280px;"
+          onclick="document.getElementById('tab-construction').click()">
+          <div class="btn-inner">
+            <div class="icon">
+              <svg viewBox="0 0 22 22" fill="none">
+                <g class="floor">
+                  <rect x="2" y="18" width="16" height="3" fill="none" stroke="white" stroke-width="1.1" />
+                </g>
+                <g class="floor">
+                  <rect x="3" y="13.5" width="14" height="4.5" fill="none" stroke="white" stroke-width="1.1" />
+                </g>
+                <g class="floor">
+                  <rect x="4" y="9" width="12" height="4.5" fill="none" stroke="white" stroke-width="1.1" />
+                </g>
+                <g class="floor">
+                  <rect x="5" y="5" width="10" height="4" fill="none" stroke="white" stroke-width="1.1" />
+                </g>
+                <g class="crane-arm">
+                  <line x1="18" y1="2" x2="18" y2="14" stroke="rgba(255,255,255,.7)" stroke-width="1" />
+                  <line x1="14" y1="2" x2="20" y2="2" stroke="rgba(255,255,255,.7)" stroke-width="1" />
+                  <line x1="18" y1="5" x2="15" y2="9" stroke="rgba(255,255,255,.4)" stroke-width=".8"
+                    stroke-dasharray="1.5 2" />
+                </g>
+              </svg>
+            </div>
+            <span class="label">Construction Packages</span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
   <!-- Sectors -->
   <!-- Pricing -->
-  <section class="pricing-section" >
+  <section class="pricing-section">
     <div class="container">
       <!-- <div class="section-label">Investment</div> -->
       <h2 class="section-title">Straightforward<br /><em>Pricing.</em></h2>
@@ -182,7 +342,7 @@
       <p class="section-sub" style="margin-bottom:40px;">All packages include professional post-editing and delivery via
         a secure property marketing website. No hidden fees.</p>
 
-      <div class="pricing-tabs" >
+      <div class="pricing-tabs">
         <button class="tab-btn active" onclick="switchTab('residential', this)">Residential</button>
         <button class="tab-btn" onclick="switchTab('str', this)">Short-Term Rental</button>
         <button class="tab-btn" id="tab-construction" onclick="switchTab('construction', this)">Construction</button>
@@ -553,7 +713,28 @@
               <span>Tolls &amp; parking</span>
             </div>
           </div>
-          <a href="#book" class="btn-primary">Book Your Shoot</a>
+          <a href="#book" class="pov-btn btn-book" style="width: 240px;">
+            <div class="btn-inner">
+              <div class="icon">
+                <svg viewBox="0 0 22 22" fill="none">
+                  <rect x="1" y="6" width="20" height="14" rx="1.5" fill="none" stroke="white" stroke-width="1.2" />
+                  <path d="M7 6 L8.5 3 L13.5 3 L15 6" fill="none" stroke="white" stroke-width="1.2" />
+                  <g class="cam-lens">
+                    <circle cx="11" cy="13" r="4.5" fill="none" stroke="white" stroke-width="1.2" />
+                  </g>
+                  <g class="cam-aperture">
+                    <circle cx="11" cy="13" r="2" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1" />
+                    <line x1="11" y1="11.2" x2="11" y2="10" stroke="rgba(255,255,255,.5)" stroke-width=".7" />
+                    <line x1="11" y1="14.8" x2="11" y2="16" stroke="rgba(255,255,255,.5)" stroke-width=".7" />
+                    <line x1="9.2" y1="13" x2="8" y2="13" stroke="rgba(255,255,255,.5)" stroke-width=".7" />
+                    <line x1="12.8" y1="13" x2="14" y2="13" stroke="rgba(255,255,255,.5)" stroke-width=".7" />
+                  </g>
+                  <circle cx="17" cy="9" r="1" fill="rgba(255,255,255,.4)" />
+                </svg>
+              </div>
+              <span class="label">Book Your Shoot</span>
+            </div>
+          </a>
         </div>
         <div class="coverage-map">
 
