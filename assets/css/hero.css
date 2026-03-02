@@ -1,7 +1,7 @@
   /* ─── HERO ─── */
   .hero {
     min-height: 100vh;
-    margin-top: 72px;
+    padding-top: 40px;
     background: var(--mist);
     position: relative;
     overflow: hidden;

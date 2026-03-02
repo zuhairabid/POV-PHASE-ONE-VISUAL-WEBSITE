@@ -219,6 +219,7 @@ section {
   line-height: 1.1;
   color: var(--black);
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .section-title em {
@@ -232,6 +233,7 @@ section {
   color: var(--slate);
   max-width: 520px;
   line-height: 1.7;
+  text-align: center;
 }
 
 /* BTN's */
