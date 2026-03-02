@@ -14,6 +14,7 @@
      padding: 0 60px;
      z-index: 1000;
      transition: box-shadow 0.3s;
+         box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
  }
 
  nav.scrolled {
@@ -174,19 +175,17 @@
 
      /* Hide text logo on very small screens to prevent overlap */
      @media (max-width: 480px) {
-         .nav-logo-text {
+         nav .nav-logo {
              display: none;
          }
 
-         nav .nav-logo {
-             /* position: absolute;
-             left: 50%;
-             transform: translateX(-50%);
+         nav .nav-logo-text {
+             position: relative;
+             /* transform: none;
              line-height: 1;
              text-align: center; */
-             margin: 0 auto;
          }
-       
+
      }
  }
 

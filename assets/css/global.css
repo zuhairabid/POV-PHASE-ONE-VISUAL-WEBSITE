@@ -265,3 +265,20 @@ section {
   background: var(--gold-light);
   transform: translateY(-2px);
 }
+
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 6vw, 36px);
+  }
+
+  .section-sub {
+    font-size: 14px;
+    max-width: 100%;
+  }
+
+}

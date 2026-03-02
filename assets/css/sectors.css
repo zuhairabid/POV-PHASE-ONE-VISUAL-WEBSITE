@@ -84,6 +84,11 @@
 
 /* Tablet (Stack 2x1) */
 @media (max-width: 992px) {
+  .sectors .container{
+padding: 0;
+
+
+  }
   .sector-split {
     grid-template-columns: 1fr;
   }
