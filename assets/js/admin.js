@@ -1,8 +1,8 @@
 // Main Admin Logic
-// Handles leads table, content editing, and dynamic form generation
+// Handles leads table, site content editing, and Advanced Pricing Manager
 
 function initAdmin() {
-    console.log("Admin Dashboard Initialized");
+    console.log("Admin Dashboard v2.0 Initialized");
 
     // --- TAB NAVIGATION ---
     const navItems = document.querySelectorAll('.nav-item');
@@ -11,15 +11,11 @@ function initAdmin() {
     navItems.forEach(item => {
         item.addEventListener('click', () => {
             const targetTab = item.dataset.tab;
-
             navItems.forEach(btn => btn.classList.remove('active'));
             item.classList.add('active');
-
             sections.forEach(section => {
                 section.classList.remove('active');
-                if (section.id === `${targetTab}-tab`) {
-                    section.classList.add('active');
-                }
+                if (section.id === `${targetTab}-tab`) section.classList.add('active');
             });
 
             if (targetTab === 'leads') fetchLeads();
@@ -55,7 +51,6 @@ function initAdmin() {
     // --- SITE CONTENT EDITOR ---
     const contentForm = document.getElementById('dynamic-content-form');
     const contentGrid = document.getElementById('content-editor-grid');
-
     const contentSchema = {
         "Hero Section": ["hero_title", "hero_subtitle", "hero_btn1_text", "hero_btn1_link", "hero_btn2_text", "hero_btn2_link"],
         "Process Steps": ["step1_title", "step1_desc", "step2_title", "step2_desc", "step3_title", "step3_desc", "step4_title", "step4_desc"],
@@ -65,41 +60,37 @@ function initAdmin() {
     async function fetchAllContent() {
         if (!db) return;
         contentGrid.innerHTML = 'Loading content...';
-        try {
-            const snapshot = await db.collection('site_content').get();
-            const contentData = {};
-            snapshot.forEach(doc => contentData[doc.id] = doc.data());
-            contentGrid.innerHTML = '';
-            for (const [sectionName, fieldIds] of Object.entries(contentSchema)) {
-                const sectionDiv = document.createElement('div');
-                sectionDiv.className = 'content-section-block';
-                sectionDiv.innerHTML = `<h4>${sectionName}</h4>`;
-                fieldIds.forEach(id => {
-                    const data = contentData[id] || { value: '', type: 'text' };
-                    const fieldDiv = document.createElement('div');
-                    fieldDiv.className = 'editor-field';
-                    const inputHtml = data.value.length > 50 || data.type === 'html'
-                        ? `<textarea name="${id}" data-type="${data.type}">${data.value}</textarea>`
-                        : `<input type="text" name="${id}" data-type="${data.type}" value="${data.value}">`;
-                    fieldDiv.innerHTML = `<label>${id.toUpperCase()}</label>${inputHtml}`;
-                    sectionDiv.appendChild(fieldDiv);
-                });
-                contentGrid.appendChild(sectionDiv);
-            }
-        } catch (error) { contentGrid.innerHTML = 'Error loading content.'; }
+        const snapshot = await db.collection('site_content').get();
+        const contentData = {};
+        snapshot.forEach(doc => contentData[doc.id] = doc.data());
+        contentGrid.innerHTML = '';
+        for (const [sectionName, fieldIds] of Object.entries(contentSchema)) {
+            const sectionDiv = document.createElement('div');
+            sectionDiv.className = 'content-section-block';
+            sectionDiv.innerHTML = `<h4>${sectionName}</h4>`;
+            fieldIds.forEach(id => {
+                const data = contentData[id] || { value: '', type: 'text' };
+                const fieldDiv = document.createElement('div');
+                fieldDiv.className = 'editor-field';
+                const inputHtml = data.value.length > 50 || data.type === 'html'
+                    ? `<textarea name="${id}" data-type="${data.type}">${data.value}</textarea>`
+                    : `<input type="text" name="${id}" data-type="${data.type}" value="${data.value}">`;
+                fieldDiv.innerHTML = `<label>${id.toUpperCase()}</label>${inputHtml}`;
+                sectionDiv.appendChild(fieldDiv);
+            });
+            contentGrid.appendChild(sectionDiv);
+        }
     }
 
     contentForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const inputs = contentForm.querySelectorAll('input, textarea');
         const batch = db.batch();
-        inputs.forEach(input => {
-            batch.set(db.collection('site_content').doc(input.name), { value: input.value, type: input.dataset.type });
-        });
+        inputs.forEach(input => batch.set(db.collection('site_content').doc(input.name), { value: input.value, type: input.dataset.type }));
         try { await batch.commit(); showToast('Site content updated!'); } catch (error) { showToast('Error saving.', true); }
     });
 
-    // --- PRICING STRUCTURE BUILDER ---
+    // --- ADVANCED PRICING MANAGER ---
     const pricingCatSelector = document.getElementById('pricing-cat-selector');
     const pricingBuilderContainer = document.getElementById('pricing-builder-container');
     const savePricingBtn = document.getElementById('save-pricing-btn');
@@ -110,83 +101,210 @@ function initAdmin() {
         const cat = pricingCatSelector.value;
         pricingBuilderContainer.innerHTML = 'Loading structure...';
         const doc = await db.collection('pricing').doc(cat).get();
-        if (doc.exists) {
-            renderPricingBuilder(doc.data());
-        }
+        if (doc.exists) renderPricingBuilder(doc.data());
     }
 
     function renderPricingBuilder(data) {
-        let html = `
-            <div class="pricing-editor-section">
-                <h3>Display Type: <span style="color:var(--admin-accent)">${data.displayType}</span></h3>
-                
-                <div class="content-card">
-                    <h4>Headers (Comma Separated)</h4>
-                    <input type="text" id="price-headers" value="${data.table.headers.join(', ')}" style="width:100%; padding:10px;">
-                </div>
+        pricingBuilderContainer.innerHTML = '';
 
-                <div class="content-card">
-                    <h4>Packages / Cards</h4>
-                    <div id="price-cards-list">
-                        ${(data.cards || []).map((card, i) => `
-                            <div class="card-editor-item" data-index="${i}" style="border:1px solid #ddd; padding:15px; margin-bottom:10px; border-radius:8px;">
-                                <input type="text" placeholder="Card Title" class="card-title" value="${card.name}">
-                                <input type="text" placeholder="Tagline" class="card-tagline" value="${card.tagline}">
-                                <textarea placeholder="Features (one per line)" class="card-features">${card.features.join('\n')}</textarea>
-                                <label><input type="checkbox" class="card-featured" ${card.featured ? 'checked' : ''}> Featured (Gold)</label>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
+        // --- 1. SETTINGS CARD ---
+        const settingsCard = createCard('General Settings');
+        settingsCard.innerHTML += `
+            <div class="editor-field">
+                <label>Display Type</label>
+                <select id="pricing-display-type" class="admin-input">
+                    <option value="table" ${data.displayType === 'table' ? 'selected' : ''}>Table Only</option>
+                    <option value="cards+table" ${data.displayType === 'cards+table' ? 'selected' : ''}>Cards + Table</option>
+                </select>
+            </div>
+        `;
+        pricingBuilderContainer.appendChild(settingsCard);
 
-                <div class="content-card">
-                    <h4>Table Rows (CSV Style)</h4>
-                    <p style="font-size:12px; color:#888;">Format: Size, Price1, Price2, Price3...</p>
-                    <textarea id="price-table-csv" style="height:200px;">${data.table.rows.map(row => (row.cells || []).join(', ')).join('\n')}</textarea>
-                </div>
+        // --- 2. PACKAGES (CARDS) EDITOR ---
+        const cardsBlock = createCard('Packages (Cards)');
+        const cardList = document.createElement('div');
+        cardList.id = 'package-cards-editor';
+        (data.cards || []).forEach(card => addCardUI(cardList, card));
 
-                <div class="content-card">
-                    <h4>Add-ons</h4>
-                    <p style="font-size:12px; color:#888;">Format: Name | Price</p>
-                    <textarea id="price-addons-csv" style="height:150px;">${(data.addons || []).map(a => `${a.name} | ${a.price}`).join('\n')}</textarea>
-                </div>
-            </div>`;
-        pricingBuilderContainer.innerHTML = html;
+        const addPackageBtn = createAddBtn('Add New Package');
+        addPackageBtn.onclick = () => addCardUI(cardList);
+
+        cardsBlock.appendChild(cardList);
+        cardsBlock.appendChild(addPackageBtn);
+        pricingBuilderContainer.appendChild(cardsBlock);
+
+        // --- 3. TABLE EDITOR ---
+        const tableBlock = createCard('Pricing Table');
+        const tableGridWrapper = document.createElement('div');
+        tableGridWrapper.className = 'table-editor-wrapper';
+
+        // Headers Row
+        const headerRow = document.createElement('div');
+        headerRow.className = 'table-editor-headers';
+        headerRow.id = 'table-headers-cont';
+        data.table.headers.forEach((h, i) => addHeaderUI(headerRow, h, i));
+
+        const addColBtn = createAddBtn('Add Column', 'small');
+        addColBtn.onclick = () => addHeaderUI(headerRow, 'New Col', headerRow.children.length);
+
+        // Rows Body
+        const tableRowsCont = document.createElement('div');
+        tableRowsCont.className = 'table-editor-rows';
+        tableRowsCont.id = 'table-rows-cont';
+        (data.table.rows || []).forEach(row => addRowUI(tableRowsCont, row, data.table.headers.length));
+
+        const addRowBtn = createAddBtn('Add New Row');
+        addRowBtn.onclick = () => addRowUI(tableRowsCont, { cells: Array(headerRow.children.length).fill('') }, headerRow.children.length);
+
+        tableBlock.appendChild(headerRow);
+        tableBlock.appendChild(addColBtn);
+        tableBlock.appendChild(tableRowsCont);
+        tableBlock.appendChild(addRowBtn);
+        pricingBuilderContainer.appendChild(tableBlock);
+
+        // --- 4. ADD-ONS EDITOR ---
+        const addonsBlock = createCard('Add-On Services');
+        const addonsList = document.createElement('div');
+        addonsList.id = 'addons-editor-list';
+        (data.addons || []).forEach(addon => addAddonUI(addonsList, addon));
+
+        const addAddonBtn = createAddBtn('Add New Add-On');
+        addAddonBtn.onclick = () => addAddonUI(addonsList);
+
+        addonsBlock.appendChild(addonsList);
+        addonsBlock.appendChild(addAddonBtn);
+        pricingBuilderContainer.appendChild(addonsBlock);
     }
 
+    // --- UI HELPERS ---
+    function createCard(title) {
+        const div = document.createElement('div');
+        div.className = 'content-card-advanced';
+        div.innerHTML = `<h3>${title}</h3>`;
+        return div;
+    }
+
+    function createAddBtn(text, size = 'normal') {
+        const btn = document.createElement('button');
+        btn.className = `add-btn ${size}`;
+        btn.innerHTML = `<span>+</span> ${text}`;
+        return btn;
+    }
+
+    function addCardUI(container, data = { name: '', tagline: '', features: [], featured: false }) {
+        const item = document.createElement('div');
+        item.className = 'pricing-item-grid pkg-item';
+        item.innerHTML = `
+            <div class="drag-handle">::</div>
+            <div class="input-stack">
+                <input type="text" placeholder="Package name" class="in-pkg-name" value="${data.name}">
+                <input type="text" placeholder="Tagline" class="in-pkg-tag" value="${data.tagline}">
+                <textarea placeholder="Bullet points (one per line)" class="in-pkg-feats">${data.features.join('\n')}</textarea>
+                <label class="toggle-label"><input type="checkbox" class="in-pkg-featured" ${data.featured ? 'checked' : ''}> Featured (Gold Glow)</label>
+            </div>
+            <button class="remove-item-btn" onclick="this.parentElement.remove()">×</button>
+        `;
+        container.appendChild(item);
+    }
+
+    function addHeaderUI(container, text, index) {
+        const div = document.createElement('div');
+        div.className = 'header-input-wrap';
+        div.innerHTML = `
+            <input type="text" class="table-header-in" value="${text}">
+            <button class="remove-col-btn" onclick="removeColumn(${index})">×</button>
+        `;
+        container.appendChild(div);
+    }
+
+    function addRowUI(container, rowData, colCount) {
+        const div = document.createElement('div');
+        div.className = 'table-row-editor';
+        let rowHtml = `<div class="row-inputs">`;
+        for (let i = 0; i < colCount; i++) {
+            rowHtml += `<input type="text" class="cell-in" value="${rowData.cells[i] || ''}">`;
+        }
+        rowHtml += `</div><button class="remove-item-btn" onclick="this.parentElement.remove()">×</button>`;
+        div.innerHTML = rowHtml;
+        container.appendChild(div);
+    }
+
+    function addAddonUI(container, data = { name: '', price: '' }) {
+        const div = document.createElement('div');
+        div.className = 'addon-item-editor';
+        div.innerHTML = `
+            <input type="text" placeholder="Add-on name" class="in-addon-name" value="${data.name}">
+            <input type="text" placeholder="Price" class="in-addon-price" value="${data.price}">
+            <button class="remove-item-btn" onclick="this.parentElement.remove()">×</button>
+        `;
+        container.appendChild(div);
+    }
+
+    // --- SAVE LOGIC ---
     savePricingBtn.addEventListener('click', async () => {
         const cat = pricingCatSelector.value;
-        const headers = document.getElementById('price-headers').value.split(',').map(h => h.trim());
-        const rowText = document.getElementById('price-table-csv').value;
-        const rows = rowText.split('\n').filter(r => r.trim()).map(r => ({ cells: r.split(',').map(cell => cell.trim()) }));
 
-        const addonText = document.getElementById('price-addons-csv').value;
-        const addons = addonText.split('\n').filter(a => a.trim()).map(a => {
-            const parts = a.split('|');
-            return { name: parts[0]?.trim(), price: parts[1]?.trim() };
+        // Headers
+        const headers = Array.from(document.querySelectorAll('.table-header-in')).map(i => i.value);
+
+        // Rows
+        const rows = Array.from(document.querySelectorAll('.table-row-editor')).map(row => {
+            const cells = Array.from(row.querySelectorAll('.cell-in')).map(c => c.value);
+            return { cells };
         });
 
-        const cardItems = document.querySelectorAll('.card-editor-item');
-        const cards = Array.from(cardItems).map(item => ({
-            name: item.querySelector('.card-title').value,
-            tagline: item.querySelector('.card-tagline').value,
-            features: item.querySelector('.card-features').value.split('\n').filter(f => f.trim()),
-            featured: item.querySelector('.card-featured').checked
+        // Cards
+        const cards = Array.from(document.querySelectorAll('.pkg-item')).map(pkg => ({
+            name: pkg.querySelector('.in-pkg-name').value,
+            tagline: pkg.querySelector('.in-pkg-tag').value,
+            features: pkg.querySelector('.in-pkg-feats').value.split('\n').filter(f => f.trim()),
+            featured: pkg.querySelector('.in-pkg-featured').checked
+        }));
+
+        // Addons
+        const addons = Array.from(document.querySelectorAll('.addon-item-editor')).map(a => ({
+            name: a.querySelector('.in-addon-name').value,
+            price: a.querySelector('.in-addon-price').value
         }));
 
         try {
-            await db.collection('pricing').doc(cat).update({
+            await db.collection('pricing').doc(cat).set({
+                displayType: document.getElementById('pricing-display-type').value,
                 table: { headers, rows },
-                cards: cards,
-                addons: addons
+                cards,
+                addons
             });
-            showToast('Pricing structure saved!');
+            showToast('Advanced Pricing Saved Successfully!');
         } catch (error) {
-            showToast('Error saving pricing.', true);
+            showToast('Error saving pricing: ' + error.message, true);
         }
     });
 
     fetchLeads();
+}
+
+function removeColumn(index) {
+    const headers = document.getElementById('table-headers-cont');
+    const rows = document.querySelectorAll('.table-row-editor');
+
+    // Remove header
+    headers.children[index].remove();
+
+    // Remove cell from each row
+    rows.forEach(row => {
+        const inputs = row.querySelector('.row-inputs');
+        if (inputs.children[index]) inputs.children[index].remove();
+    });
+
+    // Re-index buttons if many
+    reindexColumnHeaders();
+}
+
+function reindexColumnHeaders() {
+    const headers = document.querySelectorAll('.header-input-wrap');
+    headers.forEach((h, i) => {
+        h.querySelector('.remove-col-btn').setAttribute('onclick', `removeColumn(${i})`);
+    });
 }
 
 function deleteLead(id) {
@@ -202,3 +320,4 @@ function showToast(msg, isError = false) {
 
 window.initAdmin = initAdmin;
 window.deleteLead = deleteLead;
+window.removeColumn = removeColumn;

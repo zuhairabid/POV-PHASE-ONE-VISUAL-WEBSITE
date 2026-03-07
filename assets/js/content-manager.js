@@ -12,10 +12,23 @@ function fetchSiteContent() {
     db.collection('site_content').get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             const data = doc.data();
-            const targetElements = document.querySelectorAll(`[data-content-id="${doc.id}"]`);
+            const id = doc.id;
+            const targetElements = document.querySelectorAll(`[data-content-id="${id}"]`);
+
             targetElements.forEach(el => {
-                if (data.type === 'text') el.innerText = data.value;
-                else if (data.type === 'html') el.innerHTML = data.value;
+                // If it's a link field and the element is an anchor, set href
+                if (id.endsWith('_link') && el.tagName === 'A') {
+                    el.setAttribute('href', data.value);
+                }
+                // If it's an image field and the element is an img, set src
+                else if (id.endsWith('_img') && el.tagName === 'IMG') {
+                    el.src = data.value;
+                }
+                // Otherwise update text/html content
+                else {
+                    if (data.type === 'text') el.innerText = data.value;
+                    else if (data.type === 'html') el.innerHTML = data.value;
+                }
             });
         });
     });
