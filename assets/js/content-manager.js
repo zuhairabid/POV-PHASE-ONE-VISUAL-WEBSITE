@@ -108,4 +108,14 @@ function renderPricingCategory(catId, data) {
     }
 
     container.innerHTML = html;
+
+    // Re-attach scroll hint removal listener for mobile
+    const wrapper = container.querySelector('.pricing-table-wrapper');
+    if (wrapper) {
+        wrapper.addEventListener('scroll', function () {
+            if (this.scrollLeft > 10) {
+                this.classList.add('scrolled');
+            }
+        });
+    }
 }

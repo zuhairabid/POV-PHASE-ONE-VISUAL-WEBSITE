@@ -123,15 +123,6 @@ function switchTab(tab, btn) {
   document.getElementById('pricing').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// Remove scroll hint once user scrolls table
-document.querySelectorAll('.pricing-table-wrapper').forEach(wrapper => {
-  wrapper.addEventListener('scroll', function () {
-    if (this.scrollLeft > 10) {
-      this.classList.add('scrolled');
-    }
-  });
-});
-
 // document.getElementById('scrollBtn').addEventListener('click', () => {
 //     document.getElementById('process').scrollIntoView({ behavior: 'smooth' });
 //   });
