@@ -1,4 +1,14 @@
 // --- CONTACT FORM SUBMISSION ---
+window.addEventListener('load', () => {
+  const preloader = document.querySelector('#preloader');
+  if (preloader) {
+    preloader.classList.add('preloader-hidden');
+    setTimeout(() => {
+      preloader.style.display = 'none'; // Clear from layout after fade
+    }, 1000);
+  }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   const contactForm = document.querySelector('#contactForm');
 
