@@ -123,6 +123,24 @@ function switchTab(tab, btn) {
   document.getElementById('pricing').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
+// Scroll to Top Logic
+const scrollTopBtn = document.querySelector('#scroll-to-top');
+
+window.addEventListener('scroll', () => {
+  if (window.pageYOffset > 300) {
+    scrollTopBtn.classList.add('show');
+  } else {
+    scrollTopBtn.classList.remove('show');
+  }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
+
 // document.getElementById('scrollBtn').addEventListener('click', () => {
 //     document.getElementById('process').scrollIntoView({ behavior: 'smooth' });
 //   });
