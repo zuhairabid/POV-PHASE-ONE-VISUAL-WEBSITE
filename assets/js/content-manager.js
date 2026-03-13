@@ -24,7 +24,28 @@ function fetchSiteContent() {
                 else if (id.endsWith('_img') && el.tagName === 'IMG') {
                     el.src = data.value;
                 }
-                // Handle list fields (split by newline)
+                // Handle specialized contact list (Label|Value)
+                else if (id === 'contact_info') {
+                    const items = data.value.split('\n').filter(i => i.trim());
+                    el.innerHTML = items.map(item => {
+                        const [label, val] = item.split('|');
+                        let formattedVal = val;
+                        if (val.includes('@')) formattedVal = `<a href="mailto:${val}" class="info-value">${val}</a>`;
+                        else if (val.startsWith('http')) formattedVal = `<a href="${val}" target="_blank" class="info-value">${val.replace('https://', '').replace('http://', '')}</a>`;
+                        else if (label.toLowerCase().includes('phone') || label.toLowerCase().includes('whatsapp')) {
+                            const cleanPhone = val.replace(/\D/g, '');
+                            formattedVal = `<a href="tel:${cleanPhone}" class="info-value">${val}</a>`;
+                        } else {
+                            formattedVal = `<span class="info-value">${val}</span>`;
+                        }
+                        return `
+                            <div class="info-item">
+                                <span class="info-label">${label}</span>
+                                ${formattedVal}
+                            </div>`;
+                    }).join('');
+                }
+                // Handle standard list fields
                 else if (data.type === 'list') {
                     const items = data.value.split('\n').filter(i => i.trim());
                     el.innerHTML = items.map(item => `<li>${item}</li>`).join('');

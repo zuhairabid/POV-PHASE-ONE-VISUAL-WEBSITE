@@ -55,7 +55,7 @@ function initAdmin() {
         "Hero Section": ["hero_title", "hero_subtitle", "hero_btn1_text", "hero_btn1_link", "hero_btn2_text", "hero_btn2_link"],
         "Process Steps": ["step1_title", "step1_desc", "step2_title", "step2_desc", "step3_title", "step3_desc", "step4_title", "step4_desc"],
         "Sectors Section": ["sector_re_tag", "sector_re_title", "sector_re_desc", "sector_re_features", "sector_cons_tag", "sector_cons_title", "sector_cons_desc", "sector_cons_features"],
-        "Contact & Footer": ["contact_title", "contact_subtitle", "pricing_subtitle", "price_tab1_name", "price_tab2_name", "price_tab3_name"]
+        "Contact & Footer": ["contact_title", "contact_subtitle", "contact_info", "pricing_subtitle", "price_tab1_name", "price_tab2_name", "price_tab3_name"]
     };
 
     async function fetchAllContent() {

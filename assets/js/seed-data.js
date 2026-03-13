@@ -21,6 +21,8 @@ const initialContent = {
     sector_cons_title: { value: "Construction<br /><em>Documentation</em>", type: "html" },
     sector_cons_desc: { value: "Systematic progress documentation for builders, developers and contractors. Capture every phase with precision — from ground-break to ribbon-cutting.", type: "text" },
     sector_cons_features: { value: "Standard Progress Visit Photography\nBefore & After Transformation Package\n3, 5 & Multi-Visit Plans\nProject Walkthrough Video (4K)\nSocial Highlight Reel\n360° Interactive Capture\nSecure Online Project Gallery", type: "list" },
+    // Contact Info (Dynamic List)
+    contact_info: { value: "Email|hello@phaseonevisuals.com\nPhone / WhatsApp|+1 (908) 555-0123\nAddress|Hopewell, NJ 08525", type: "list" },
 };
 
 const residentialPricing = {
