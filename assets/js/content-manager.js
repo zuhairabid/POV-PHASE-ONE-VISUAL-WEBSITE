@@ -24,6 +24,11 @@ function fetchSiteContent() {
                 else if (id.endsWith('_img') && el.tagName === 'IMG') {
                     el.src = data.value;
                 }
+                // Handle list fields (split by newline)
+                else if (data.type === 'list') {
+                    const items = data.value.split('\n').filter(i => i.trim());
+                    el.innerHTML = items.map(item => `<li>${item}</li>`).join('');
+                }
                 // Otherwise update text/html content
                 else {
                     if (data.type === 'text') el.innerText = data.value;
@@ -58,7 +63,7 @@ function renderPricingCategory(catId, data) {
             const featuredClass = pkg.featured ? 'featured' : '';
             const wideClass = (data.cards.length === 3 && index === 2) ? 'style="grid-column: span 2;"' : '';
             html += `
-                <div class="pkg-card ${featuredClass}" ${wideClass}>
+                <div class="pkg-card ${featuredClass}" ${wideClass} onclick="scrollToPackageColumn(this, ${index})">
                     <div class="pkg-name">${pkg.name}</div>
                     <h4>${pkg.tagline}</h4>
                     <ul class="pkg-includes">
@@ -117,5 +122,33 @@ function renderPricingCategory(catId, data) {
                 this.classList.add('scrolled');
             }
         });
+    }
+}
+
+/**
+ * Helper to scroll to the correct pricing table column on mobile
+ * @param {HTMLElement} cardEl - The clicked package card
+ * @param {number} index - The index of the package (0-based)
+ */
+function scrollToPackageColumn(cardEl, index) {
+    const panel = cardEl.closest('.tab-panel');
+    const wrapper = panel.querySelector('.pricing-table-wrapper');
+    if (!wrapper) return;
+
+    // 1. Scroll page vertically to the table
+    wrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // 2. On mobile, scroll the table horizontally to the relevant column
+    if (window.innerWidth <= 768) {
+        const targetTh = wrapper.querySelectorAll('th')[index + 1]; // +1 because col 0 is "Property Size"
+        if (targetTh) {
+            // Delay slightly to coordinate with vertical scroll
+            setTimeout(() => {
+                // Adjust scroll so column starts after the sticky first column (~160px)
+                const stickyColWidth = 140;
+                const scrollTarget = targetTh.offsetLeft - stickyColWidth;
+                wrapper.scrollTo({ left: scrollTarget, behavior: 'smooth' });
+            }, 500);
+        }
     }
 }

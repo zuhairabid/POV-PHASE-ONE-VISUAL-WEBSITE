@@ -1,10 +1,13 @@
 .pricing-section {
   background: var(--white);
 }
-.pricing-section .section-title,.section-sub{
-  text-align:center;
+
+.pricing-section .section-title,
+.section-sub {
+  text-align: center;
   margin: 25px auto;
 }
+
 .pricing-tabs {
   display: flex;
   gap: 0;
@@ -153,7 +156,7 @@
   background: var(--white);
   transition: box-shadow 0.2s, transform 0.2s;
   position: relative;
-
+  cursor: pointer;
 }
 
 .pkg-card:hover {
@@ -280,6 +283,7 @@
   background: var(--white);
   transition: box-shadow 0.2s, transform 0.2s;
   position: relative;
+  cursor: pointer;
 }
 
 .cpkg-card:hover {
@@ -416,17 +420,7 @@
     /* prevents squishing */
   }
 
-  /* Subtle scroll fade hint */
-  .pricing-table-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 40px;
-    height: 100%;
-    pointer-events: none;
-    background: linear-gradient(to left, var(--white), transparent);
-  }
+  /* Removed fade hint as first column is now sticky */
 
   /* Reduce table padding slightly */
   .pricing-table th,
@@ -436,6 +430,28 @@
 
   .pricing-table td.price-cell {
     font-size: 18px;
+  }
+
+  /* Fixed First Column for Mobile */
+  .pricing-table th:first-child,
+  .pricing-table td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 5;
+    border-right: 1px solid var(--divider);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+  }
+
+  .pricing-table thead th:first-child {
+    background: var(--black);
+  }
+
+  .pricing-table tbody td:first-child {
+    background: var(--white);
+  }
+
+  .pricing-table tbody tr:hover td:first-child {
+    background: var(--gold-pale);
   }
 
   /* Better section spacing */
@@ -448,9 +464,6 @@
   }
 }
 
-.pricing-table-wrapper.scrolled::after {
-  display: none;
-}
 
 /* ---------- Small Mobile ---------- */
 @media (max-width: 480px) {

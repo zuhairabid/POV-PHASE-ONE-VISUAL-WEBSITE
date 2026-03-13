@@ -12,6 +12,15 @@ const initialContent = {
     price_tab1_name: { value: "Residential", type: "text" },
     price_tab2_name: { value: "Short-Term Rental", type: "text" },
     price_tab3_name: { value: "Construction", type: "text" },
+    // Sector Split Section
+    sector_re_tag: { value: "Residential & STR", type: "text" },
+    sector_re_title: { value: "Real Estate<br /><em>Photography</em>", type: "html" },
+    sector_re_desc: { value: "We partner with realtors, agents, and property owners to produce MLS-ready media packages that get eyes on listings and drive faster offers.", type: "text" },
+    sector_re_features: { value: "HDR Interior & Exterior Photography\nDrone Aerial Views\nWalkthrough Video + Social Reel\n360° Interactive Tours\nVirtual Twilight & Staging\nMarketing Floor Plans\nCustom Property Website Included", type: "list" },
+    sector_cons_tag: { value: "Construction & Development", type: "text" },
+    sector_cons_title: { value: "Construction<br /><em>Documentation</em>", type: "html" },
+    sector_cons_desc: { value: "Systematic progress documentation for builders, developers and contractors. Capture every phase with precision — from ground-break to ribbon-cutting.", type: "text" },
+    sector_cons_features: { value: "Standard Progress Visit Photography\nBefore & After Transformation Package\n3, 5 & Multi-Visit Plans\nProject Walkthrough Video (4K)\nSocial Highlight Reel\n360° Interactive Capture\nSecure Online Project Gallery", type: "list" },
 };
 
 const residentialPricing = {
