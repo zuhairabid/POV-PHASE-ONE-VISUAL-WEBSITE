@@ -176,7 +176,7 @@ footer .nav-footer-logo-text .visuals {
 }
 
 /* Mobile */
-@media (max-width: 368px) {
+@media (max-width: 597px) {
   footer {
     padding: 60px 20px 30px;
   }
