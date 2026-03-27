@@ -7,50 +7,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoutBtn = document.getElementById('logout-btn');
     const userInfo = document.getElementById('user-info');
 
-    // Admin Credentials
-    const ADMIN_USERNAME = 'Admin';
-    const ADMIN_PASSWORD = 'Yourmom123';
+    // Monitor Auth State
+    if (typeof auth !== 'undefined') {
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                // User is signed in
+                authSection.style.display = 'none';
+                dashboardSection.style.display = 'block';
+                userInfo.innerText = `Logged in as: ${user.email}`;
 
-    // Check if user is already logged in (via localStorage)
-    const checkLoginStatus = () => {
-        const isLoggedIn = localStorage.getItem('adminLoggedIn');
-        if (isLoggedIn === 'true') {
-            authSection.style.display = 'none';
-            dashboardSection.style.display = 'block';
-            userInfo.innerText = 'Logged in as: Admin';
-            if (typeof initAdmin === 'function') initAdmin();
-        } else {
-            authSection.style.display = 'flex';
-            dashboardSection.style.display = 'none';
-        }
-    };
+                // Trigger admin logic
+                if (typeof initAdmin === 'function') initAdmin();
+            } else {
+                // User is signed out
+                authSection.style.display = 'flex';
+                dashboardSection.style.display = 'none';
+            }
+        });
 
-    // Initial check
-    checkLoginStatus();
+        // Login Logi
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
 
-    // Login Logic
-    loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const username = document.getElementById('login-username').value;
-        const password = document.getElementById('login-password').value;
+            auth.signInWithEmailAndPassword(email, password)
+                .then(() => {
+                    loginError.style.display = 'none';
+                })
+                .catch((error) => {
+                    loginError.innerText = error.message;
+                    loginError.style.display = 'block';
+                });
+        });
 
-        if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-            localStorage.setItem('adminLoggedIn', 'true');
-            loginError.style.display = 'none';
-            authSection.style.display = 'none';
-            dashboardSection.style.display = 'block';
-            userInfo.innerText = 'Logged in as: Admin';
-            if (typeof initAdmin === 'function') initAdmin();
-        } else {
-            loginError.innerText = 'Invalid username or password';
-            loginError.style.display = 'block';
-        }
-    });
-
-    // Logout Logic
-    logoutBtn.addEventListener('click', () => {
-        localStorage.removeItem('adminLoggedIn');
-        authSection.style.display = 'flex';
-        dashboardSection.style.display = 'none';
-    });
+        // Logout Logic
+        logoutBtn.addEventListener('click', () => {
+            auth.signOut();
+        });
+    }
 });
