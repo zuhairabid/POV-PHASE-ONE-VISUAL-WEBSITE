@@ -1,0 +1,348 @@
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--divider);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
+  z-index: 1000;
+  transition: box-shadow 0.3s, background-color 0.4s, border-color 0.4s;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+
+nav.scrolled {
+  box-shadow: var(--shadow-md);
+}
+
+/* Logo */
+.nav-logo-text {
+  cursor: pointer;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+}
+
+.phase-one {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 26px;
+  text-transform: uppercase;
+  color: var(--black);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: color 0.4s;
+}
+
+.visuals {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.4em;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Nav links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a:not(.pov-btn) {
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--slate);
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.nav-links a:not(.pov-btn)::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s;
+}
+
+.nav-links a:not(.pov-btn):hover {
+  color: var(--black);
+}
+
+.nav-links a:not(.pov-btn):hover::after {
+  transform: scaleX(1);
+}
+
+
+/* Nav Right (Theme toggle + Hamburger) */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 1100;
+}
+
+/* Theme toggle */
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--divider);
+  color: var(--black);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  /* More modern than 50% circle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle:hover {
+  background: var(--mist);
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.theme-toggle:active {
+  transform: translateY(0) scale(0.95);
+}
+
+[data-theme="dark"] .theme-toggle .sun-icon {
+  display: block;
+}
+
+[data-theme="dark"] .theme-toggle .moon-icon {
+  display: none;
+}
+
+.theme-toggle .sun-icon {
+  display: none;
+}
+
+.theme-toggle .moon-icon {
+  display: block;
+}
+
+/* Hamburger */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 6px;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.menu-toggle:hover {
+  background: var(--mist);
+}
+
+.bar {
+  width: 22px;
+  height: 2px;
+  background-color: var(--black);
+  display: block;
+  transition: all 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+#mobile-menu.is-active .bar:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+#mobile-menu.is-active .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+#mobile-menu.is-active .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Desktop: hide left book btn */
+#nav-rspn-btn {
+  display: none;
+}
+
+/* ─── DESKTOP ─── */
+@media (min-width: 1101px) {
+  .nav-links {
+    margin-left: auto;
+    margin-right: 40px;
+  }
+}
+
+/* ─── MOBILE / TABLET ─── */
+@media (max-width: 1100px) {
+  nav {
+    padding: 0 20px;
+    height: 64px;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  /* Hide desktop links, show drawer */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 320px;
+    /* Drawer instead of full screen often feels more premium */
+    height: 100vh;
+    background: var(--nav-bg);
+    backdrop-filter: blur(24px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px;
+    transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
+    gap: 12px;
+    z-index: 1000;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links li {
+    width: 100%;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.4s ease;
+  }
+
+  .nav-links.active li {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Staggered entry for menu items */
+  .nav-links.active li:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+
+  .nav-links.active li:nth-child(2) {
+    transition-delay: 0.15s;
+  }
+
+  .nav-links.active li:nth-child(3) {
+    transition-delay: 0.2s;
+  }
+
+  .nav-links.active li:nth-child(4) {
+    transition-delay: 0.25s;
+  }
+
+  .nav-links.active li:nth-child(5) {
+    transition-delay: 0.3s;
+  }
+
+  .nav-links a:not(.pov-btn) {
+    display: block;
+    padding: 12px 0;
+    font-size: 24px;
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--black);
+  }
+
+  /* Hide specific book btn in drawer since we have it on left of nav now */
+  .nav-links li:has(.btn-book) {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--divider);
+  }
+
+  /* Show left book button in main nav */
+  #nav-rspn-btn {
+    display: flex;
+    z-index: 1200;
+  }
+
+  /* Center logo absolutely */
+  nav>a:has(.nav-logo-text) {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1050;
+    pointer-events: auto;
+  }
+
+  .phase-one {
+    font-size: 20px;
+  }
+
+  .visuals {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+  }
+}
+
+@media (max-width: 600px) {
+  nav {
+    padding: 0 12px;
+  }
+
+  /* Adjust Book Now button for very small screens */
+  #nav-rspn-btn .label {
+    display: none;
+  }
+
+  /* Show only icon on small mobile */
+  #nav-rspn-btn .pov-btn {
+    width: 44px !important;
+    padding: 0 !important;
+    border-radius: 10px;
+  }
+
+  #nav-rspn-btn .icon {
+    width: 22px;
+    opacity: 1;
+  }
+
+  .nav-right {
+    gap: 8px;
+  }
+
+  .phase-one {
+    font-size: 18px;
+  }
+
+  .visuals {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+  }
+
+  .nav-links {
+    width: 100%;
+  }
+
+  /* Full width drawer on phones */
+}
+
+/* Fix for logo overlap when screen is narrow */
+@media (max-width: 400px) {
+  .nav-logo-text {
+    transform: scale(0.9);
+  }
+}

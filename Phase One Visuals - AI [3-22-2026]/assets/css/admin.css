@@ -1,0 +1,460 @@
+/* ─── ADMIN PANEL STYLES ─── */
+:root {
+    --admin-bg: #f4f7f6;
+    --admin-card: #ffffff;
+    --admin-primary: #111111;
+    --admin-accent: #C8861A;
+    --admin-text: #333333;
+    --admin-muted: #888888;
+    --admin-border: #e0e0e0;
+}
+
+body.admin-body {
+    background: var(--admin-bg);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--admin-text);
+    margin: 0;
+    padding: 0;
+}
+
+.admin-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Auth Page */
+.auth-wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-card {
+    background: var(--admin-card);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.auth-card h2 {
+    margin-bottom: 30px;
+    font-family: 'Playfair Display', serif;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--admin-border);
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: var(--admin-accent);
+}
+
+.admin-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--admin-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+}
+
+.admin-btn:hover {
+    background: #000;
+    transform: translateY(-2px);
+}
+
+/* Dashboard Layout */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-header h1 {
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+}
+
+.admin-nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.nav-item {
+    padding: 10px 20px;
+    background: white;
+    border: 1px solid var(--admin-border);
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--admin-muted);
+    border-radius: 8px;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.nav-item.active {
+    background: var(--admin-primary);
+    color: white;
+    border-color: var(--admin-primary);
+}
+
+.admin-section {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.admin-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Content Editor Grid */
+#content-editor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 30px;
+}
+
+.content-section-block {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--admin-border);
+}
+
+.content-section-block h4 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--admin-accent);
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Cards & Content */
+.content-card {
+    background: var(--admin-card);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    margin-bottom: 30px;
+}
+
+.content-card h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--admin-bg);
+    padding-bottom: 10px;
+}
+
+/* Leads Table */
+.leads-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.leads-table th,
+.leads-table td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--admin-bg);
+}
+
+.leads-table th {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--admin-muted);
+}
+
+.leads-table tr:hover {
+    background: #fafafa;
+}
+
+.log-out-btn {
+    background: transparent;
+    border: 1px solid var(--admin-border);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.save-status {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    display: none;
+    z-index: 2000;
+}
+
+.save-status.success {
+    background: #2ecc71;
+    display: block;
+}
+
+.save-status.error {
+    background: #e74c3c;
+    display: block;
+}
+
+/* Editor Fields */
+.editor-field {
+    margin-bottom: 24px;
+}
+
+.editor-field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--admin-muted);
+}
+
+.editor-field input,
+.editor-field textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--admin-border);
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+.editor-field textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+/* Advanced Pricing UI */
+.content-card-advanced {
+    background: white;
+    border: 1px solid var(--admin-border);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.content-card-advanced h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: var(--admin-accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.pricing-item-grid {
+    display: flex;
+    gap: 15px;
+    background: #fdfdfd;
+    padding: 15px;
+    border: 1px solid #efefef;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.pkg-item {
+    border-left: 4px solid var(--admin-accent);
+}
+
+.input-stack {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.in-pkg-feats {
+    height: 80px;
+    font-size: 13px;
+}
+
+/* Table Editor Grid */
+.table-editor-wrapper {
+    overflow-x: auto;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.table-editor-headers {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.header-input-wrap {
+    flex: 1;
+    min-width: 150px;
+    position: relative;
+}
+
+.table-header-in {
+    width: 100%;
+    padding: 10px;
+    font-weight: 700;
+    background: #eee;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.table-editor-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.table-row-editor {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.row-inputs {
+    flex: 1;
+    display: flex;
+    gap: 10px;
+}
+
+.cell-in {
+    flex: 1;
+    min-width: 150px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Add-ons Editor */
+.addon-item-editor {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+    background: white;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #eee;
+}
+
+.addon-item-editor input {
+    flex: 1;
+}
+
+/* Buttons */
+.add-btn {
+    background: #f0f0f0;
+    border: 1px dashed #ccc;
+    color: #666;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.add-btn.small {
+    width: auto;
+    padding: 8px 15px;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.add-btn:hover {
+    background: var(--admin-accent);
+    color: white;
+    border-style: solid;
+}
+
+.remove-item-btn,
+.remove-col-btn {
+    background: #ff7675;
+    color: white;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.remove-col-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+}
+
+.toggle-label {
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    margin-top: 5px;
+}

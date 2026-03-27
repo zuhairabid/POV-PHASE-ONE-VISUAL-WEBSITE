@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phase One Visuals — Real Estate & Construction Media | NJ & PA</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=Barlow:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+
+  <title>Document</title>
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/navbar.css">
+  <link rel="stylesheet" href="/assets/css/hero.css">
+  <link rel="stylesheet" href="/assets/css/process-section.css">
+  <link rel="stylesheet" href="/assets/css/sectors.css">
+  <link rel="stylesheet" href="/assets/css/pricing.css">
+  <link rel="stylesheet" href="/assets/css/coverage.css">
+  <link rel="stylesheet" href="/assets/css/our-story.css">
+  <link rel="stylesheet" href="/assets/css/contact.css">
+  <link rel="stylesheet" href="/assets/css/footer.css">
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="/assets/css/loader.css">
+</head>
+
+<body>
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="loader-content">
+      <div class="loader-spinner"></div>
+      <img src="/assets/img/loading.png" alt="Logo" class="loader-logo">
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+
+  <nav id="navbar">
+
+    <!-- LEFT: Book a Shoot (mobile only) -->
+    <li id="nav-rspn-btn">
+
+
+      <a href="#book" class="pov-btn btn-book" style="height: 48px; padding: 0 24px;  width: fit-content;">
+        <div class="btn-inner">
+          <div class="icon">
+            <svg viewBox="0 0 22 22" fill="none">
+              <rect x="1" y="6" width="20" height="14" rx="1.5" fill="none" stroke="white" stroke-width="1.2" />
+              <path d="M7 6 L8.5 3 L13.5 3 L15 6" fill="none" stroke="white" stroke-width="1.2" />
+              <g class="cam-lens">
+                <circle cx="11" cy="13" r="4.5" fill="none" stroke="white" stroke-width="1.2" />
+              </g>
+              <g class="cam-aperture">
+                <circle cx="11" cy="13" r="2" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1" />
+                <line x1="11" y1="11.2" x2="11" y2="10" stroke="rgba(255,255,255,.5)" stroke-width=".7" />
+                <line x1="11" y1="14.8" x2="11" y2="16" stroke="rgba(255,255,255,.5)" stroke-width=".7" />
+                <line x1="9.2" y1="13" x2="8" y2="13" stroke="rgba(255,255,255,.5)" stroke-width=".7" />
+                <line x1="12.8" y1="13" x2="14" y2="13" stroke="rgba(255,255,255,.5)" stroke-width=".7" />
+              </g>
+              <circle cx="17" cy="9" r="1" fill="rgba(255,255,255,.4)" />
+            </svg>
+          </div>
+          <span class="label">Book a Shoot</span>
+        </div>
+      </a>
+    </li>
+    <!-- CENTER: Logo -->
+    <a href="#">
+      <div class="nav-logo-text">
+        <p class="phase-one">PHASE ONE</p>
+        <p class="visuals">VISUALS</p>
+      </div>
+    </a>
+
+    <!-- Desktop Nav Links -->
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#sectors">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#coverage">Coverage</a></li>
+      <li>
+        <a href="#book" class="pov-btn btn-book" style="height: 48px; padding: 0 24px;  width: fit-content;">
+          <div class="btn-inner">
+            <div class="icon">
+              <svg viewBox="0 0 22 22" fill="none">
+                <rect x="1" y="6" width="20" height="14" rx="1.5" fill="none" stroke="white" stroke-width="1.2" />
+                <path d="M7 6 L8.5 3 L13.5 3 L15 6" fill="none" stroke="white" stroke-width="1.2" />
+                <g class="cam-lens">
+                  <circle cx="11" cy="13" r="4.5" fill="none" stroke="white" stroke-width="1.2" />
+                </g>
+                <g class="cam-aperture">
+                  <circle cx="11" cy="13" r="2" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1" />
+                  <line x1="11" y1="11.2" x2="11" y2="10" stroke="rgba(255,255,255,.5)" stroke-width=".7" />
+                  <line x1="11" y1="14.8" x2="11" y2="16" stroke="rgba(255,255,255,.5)" stroke-width=".7" />
+                  <line x1="9.2" y1="13" x2="8" y2="13" stroke="rgba(255,255,255,.5)" stroke-width=".7" />
+                  <line x1="12.8" y1="13" x2="14" y2="13" stroke="rgba(255,255,255,.5)" stroke-width=".7" />
+                </g>
+                <circle cx="17" cy="9" r="1" fill="rgba(255,255,255,.4)" />
+              </svg>
+            </div>
+            <span class="label">Book a Shoot</span>
+          </div>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Theme toggle & Hamburger -->
+    <div class="nav-right">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5" />
+          <line x1="12" y1="1" x2="12" y2="3" />
+          <line x1="12" y1="21" x2="12" y2="23" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          <line x1="1" y1="12" x2="3" y2="12" />
+          <line x1="21" y1="12" x2="23" y2="12" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
+      </button>
+
+      <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- NAVBAR -->
+  <!-- Hero -->
+  <!-- ─── HERO ─── -->
+  <section class="hero" id="home">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-content">
+      <!-- <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        Real Estate &amp; Construction Photography
+      </div> -->
+      <h1 data-content-id="hero_title">
+        Properties<br />Sold Through
+        <em>Exceptional<br />Visuals.</em>
+      </h1>
+      <p class="hero-sub" data-content-id="hero_subtitle">
+        Premium photography, video tours and 3D walkthroughs crafted for
+        realtors, developers and construction firms across New Jersey &amp; Pennsylvania.
+      </p>
+      <div class="hero-actions">
+        <a href="#pricing" class="pov-btn btn-pricing" style="width: 200px;" data-content-id="hero_btn1_link">
+          <div class="btn-inner">
+            <div class="icon">
+              <svg viewBox="0 0 22 22" fill="none" style="overflow:visible">
+                <g class="tag-g">
+                  <path d="M4 2 L16 2 L20 11 L11 20 L2 11 Z" fill="none" stroke="currentColor" stroke-width="1.2"
+                    stroke-linejoin="round" />
+                  <circle cx="7" cy="6" r="1.5" fill="none" stroke="currentColor" stroke-width="1"
+                    style="opacity:0.7" />
+                  <line x1="9" y1="9" x2="16" y2="9" stroke="currentColor" stroke-width=".8" style="opacity:0.4" />
+                  <line x1="8.5" y1="12" x2="15" y2="12" stroke="currentColor" stroke-width=".8" style="opacity:0.4" />
+                  <line x1="8" y1="15" x2="14" y2="15" stroke="currentColor" stroke-width=".8" style="opacity:0.4" />
+                </g>
+              </svg>
+            </div>
+            <span class="label" data-content-id="hero_btn1_text">View Pricing</span>
+          </div>
+        </a>
+        <a href="#sectors" class="pov-btn btn-services" style="width: 200px;" data-content-id="hero_btn2_link">
+          <div class="btn-inner">
+            <div class="icon">
+              <!-- svg content -->
+            </div>
+            <span class="label" data-content-id="hero_btn2_text">Our Services</span>
+          </div>
+        </a>
+      </div>
+      <!-- <div class="hero-stats"> -->
+      <!-- <div class="stat"><strong>500+</strong><span>Properties Shot</span></div>
+        <div class="stat-divider"></div> -->
+      <!-- <div class="stat"><strong>24hr</strong><span>Stills Delivery</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>NJ + PA</strong><span>Coverage Area</span></div> -->
+      <!-- <div class="stat-divider"></div>
+        <div class="stat"><strong>98%</strong><span>Client Satisfaction</span></div> -->
+      <!-- </div> -->
+    </div>
+
+    </div>
+    <!-- The scroll arrow -->
+    <a href="#process">
+      <div class="scroll-arrow" id="scrollBtn" title="Scroll down">
+        <div class="ring"></div>
+        <div class="circle"></div>
+        <svg class="arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19" />
+          <polyline points="19 12 12 19 5 12" />
+        </svg>
+      </div>
+    </a>
+  </section>
+  <!-- Hero -->
+  <!-- Process Section -->
+  <!-- ─── PROCESS ─── -->
+
+  <section class="process-section" id="process">
+    <div class="container">
+      <div class="section-label">How It Works</div>
+
+      <div class="process-steps">
+
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-text">
+            <h4 data-content-id="step1_title">Book Online</h4>
+            <p data-content-id="step1_desc">Choose your package, select your date and confirm. Same-day delivery
+              available on request.</p>
+          </div>
+        </div>
+
+        <div class="step-connector" aria-hidden="true"></div>
+
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-text">
+            <h4 data-content-id="step2_title">Property Prep</h4>
+            <p data-content-id="step2_desc">Ensure the property is photo-ready at the scheduled start time. Our team
+              arrives on time, every time.</p>
+          </div>
+        </div>
+
+        <div class="step-connector" aria-hidden="true"></div>
+
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-text">
+            <h4 data-content-id="step3_title">We Shoot</h4>
+            <p data-content-id="step3_desc">Professional photography and media capture across all designated rooms and
+              areas.</p>
+          </div>
+        </div>
+
+        <div class="step-connector" aria-hidden="true"></div>
+
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-text">
+            <h4 data-content-id="step4_title">Delivered &amp; Listed</h4>
+            <p data-content-id="step4_desc">Edited media delivered to your secure property website within 24–48 hours.
+              MLS-ready.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- Process Section -->
+  <!-- Sectors -->
+  <!-- ─── SECTOR SPLIT ─── -->
+  <section class="sectors" id="sectors">
+    <div class="sector-split container">
+      <div class="sector-panel real-estate">
+        <div class="sector-tag" data-content-id="sector_re_tag">Residential &amp; STR</div>
+        <h2 data-content-id="sector_re_title">Real Estate<br /><em>Photography</em></h2>
+        <p data-content-id="sector_re_desc">We partner with realtors, agents, and property owners to produce MLS-ready
+          media packages that get eyes on
+          listings and drive faster offers.</p>
+        <ul class="sector-features" data-content-id="sector_re_features">
+          <li>HDR Interior &amp; Exterior Photography</li>
+          <li>Drone Aerial Views</li>
+          <li>Walkthrough Video + Social Reel</li>
+          <li>360° Interactive Tours</li>
+          <li>Virtual Twilight &amp; Staging</li>
+          <li>Marketing Floor Plans</li>
+          <li>Custom Property Website Included</li>
+        </ul>
+        <a href="#pricing" class="pov-btn btn-realestate" style="width: 280px;"
+          onclick="document.getElementById('tab-residential').click()">
+          <div class="btn-inner">
+            <div class="icon">
+              <svg viewBox="0 0 22 22" fill="none">
+                <line x1="1" y1="21" x2="21" y2="21" stroke="rgba(255,255,255,.35)" stroke-width=".8" />
+                <g class="house-walls">
+                  <rect x="4" y="11" width="14" height="10" fill="none" stroke="white" stroke-width="1.2" />
+                  <rect class="house-door" x="8.5" y="16" width="5" height="5" fill="none" stroke="var(--gold)"
+                    stroke-width="1" />
+                  <rect x="5" y="13" width="3.5" height="2.5" fill="none" stroke="rgba(255,255,255,.45)"
+                    stroke-width=".8" />
+                  <rect x="13.5" y="13" width="3.5" height="2.5" fill="none" stroke="rgba(255,255,255,.45)"
+                    stroke-width=".8" />
+                </g>
+                <g class="house-roof">
+                  <polyline points="2,11 11,2 20,11" fill="none" stroke="var(--gold)" stroke-width="1.3"
+                    stroke-linejoin="round" />
+                </g>
+              </svg>
+            </div>
+            <span class="label">Real Estate Packages</span>
+          </div>
+        </a>
+      </div>
+      <div class="sector-panel construction">
+        <div class="sector-tag" data-content-id="sector_cons_tag">Construction &amp; Development</div>
+        <h2 data-content-id="sector_cons_title">Construction<br /><em>Documentation</em></h2>
+        <p style="color:#aaa;" data-content-id="sector_cons_desc">Systematic progress documentation for builders,
+          developers and contractors. Capture every
+          phase with precision — from ground-break to ribbon-cutting.</p>
+        <ul class="sector-features" data-content-id="sector_cons_features">
+          <li>Standard Progress Visit Photography</li>
+          <li>Before &amp; After Transformation Package</li>
+          <li>3, 5 &amp; Multi-Visit Plans</li>
+          <li>Project Walkthrough Video (4K)</li>
+          <li>Social Highlight Reel</li>
+          <li>360° Interactive Capture</li>
+          <li>Secure Online Project Gallery</li>
+        </ul>
+        <a href="#pricing" class="pov-btn btn-construction" style="width: 280px;"
+          onclick="document.getElementById('tab-construction').click()">
+          <div class="btn-inner">
+            <div class="icon">
+              <svg viewBox="0 0 22 22" fill="none">
+                <g class="floor">
+                  <rect x="2" y="18" width="16" height="3" fill="none" stroke="white" stroke-width="1.1" />
+                </g>
+                <g class="floor">
+                  <rect x="3" y="13.5" width="14" height="4.5" fill="none" stroke="white" stroke-width="1.1" />
+                </g>
+                <g class="floor">
+                  <rect x="4" y="9" width="12" height="4.5" fill="none" stroke="white" stroke-width="1.1" />
+                </g>
+                <g class="floor">
+                  <rect x="5" y="5" width="10" height="4" fill="none" stroke="white" stroke-width="1.1" />
+                </g>
+                <g class="crane-arm">
+                  <line x1="18" y1="2" x2="18" y2="14" stroke="rgba(255,255,255,.7)" stroke-width="1" />
+                  <line x1="14" y1="2" x2="20" y2="2" stroke="rgba(255,255,255,.7)" stroke-width="1" />
+                  <line x1="18" y1="5" x2="15" y2="9" stroke="rgba(255,255,255,.4)" stroke-width=".8"
+                    stroke-dasharray="1.5 2" />
+                </g>
+              </svg>
+            </div>
+            <span class="label">Construction Packages</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- Sectors -->
+  <!-- Pricing -->
+  <section class="pricing-section">
+    <div class="container">
+      <!-- <div class="section-label">Investment</div> -->
+      <h2 class="section-title">Straightforward<br /><em>Pricing.</em></h2>
+      <div id="pricing"></div>
+      <p class="section-sub" style="margin-bottom:40px;" data-content-id="pricing_subtitle">All packages include
+        professional post-editing and delivery via
+        a secure property marketing website. No hidden fees.</p>
+
+      <div class="pricing-tabs">
+        <button class="tab-btn active" id="tab-residential" onclick="switchTab('residential', this)"
+          data-content-id="price_tab1_name">Residential</button>
+        <button class="tab-btn" onclick="switchTab('str', this)" data-content-id="price_tab2_name">Short-Term
+          Rental</button>
+        <button class="tab-btn" id="tab-construction" onclick="switchTab('construction', this)"
+          data-content-id="price_tab3_name">Construction</button>
+      </div>
+
+      <!-- RESIDENTIAL TAB -->
+      <div class="tab-panel active" id="panel-residential">
+        <div id="dynamic-pricing-residential"></div>
+      </div>
+
+      <!-- STR TAB -->
+      <div class="tab-panel" id="panel-str">
+        <div id="dynamic-pricing-str"></div>
+      </div>
+
+      <!-- CONSTRUCTION TAB -->
+      <div class="tab-panel" id="panel-construction">
+        <div id="dynamic-pricing-construction"></div>
+        <div
+          style="margin-top:28px; padding:24px 28px; background:var(--mist); border:1px solid var(--divider); border-radius:6px; font-size:13px; color:var(--slate); line-height:1.7;">
+          <strong style="color:var(--black);">Important:</strong> Phase One Visuals provides media documentation
+          services only. Media reflects observable conditions at time of capture and does not include inspection,
+          engineering review, code compliance evaluation, or permitting verification. Client is responsible for all
+          inspections and approvals.
+        </div>
+      </div>
+  </section>
+
+  <!-- Pricing -->
+  <!-- Contact / Book Now Section -->
+  <section class="contact-section" id="book">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-left">
+          <div class="contact-header">
+            <h2 data-content-id="contact_title">Get in touch</h2>
+            <p data-content-id="contact_subtitle">Ready to showcase your property? Get in touch to schedule a session,
+              or for any media enquiries.</p>
+          </div>
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <input type="text" name="name" placeholder="Name" required>
+            </div>
+            <div class="form-group">
+              <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+              <input type="text" name="company" placeholder="What's your company">
+            </div>
+            <div class="form-group">
+              <input type="text" name="topic" placeholder="How Can We Help?">
+            </div>
+            <div class="form-group full-width">
+              <textarea name="message" placeholder="What's your Message?"></textarea>
+            </div>
+            <button type="submit" class="pov-btn btn-send">
+              <span class="label">SEND</span>
+            </button>
+          </form>
+        </div>
+
+        <div class="contact-right">
+          <div class="contact-info-wrapper">
+            <div class="info-card" data-content-id="contact_info">
+              <!-- Dynamically populated from CMS (Label|Value) -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Book Now Section -->
+  <!-- Coverage -->
+  <section class="coverage-section" id="coverage">
+    <div class="container">
+      <div class="coverage-inner">
+        <div class="coverage-content">
+          <!-- <div class="section-label">Service Area</div> -->
+          <h2 class="section-title" data-content-id="coverage_title">Based in<br /><em>Hopewell, NJ.</em></h2>
+          <p class="section-sub" data-content-id="coverage_subtitle">Serving residential and commercial clients across
+            New Jersey and Pennsylvania
+            with professional real estate and construction media.</p>
+          <div class="coverage-facts">
+            <div class="fact-box gold-box">
+              <strong data-content-id="fact1_val">25 mi</strong>
+              <span data-content-id="fact1_label">Free travel radius</span>
+            </div>
+            <div class="fact-box">
+              <strong data-content-id="fact2_val">IRS Rate</strong>
+              <span data-content-id="fact2_label">Mileage beyond 25 miles</span>
+            </div>
+            <div class="fact-box">
+              <strong data-content-id="fact3_val">NJ + PA</strong>
+              <span data-content-id="fact3_label">Primary coverage states</span>
+            </div>
+            <div class="fact-box">
+              <strong data-content-id="fact4_val">At Cost</strong>
+              <span data-content-id="fact4_label">Tolls &amp; parking</span>
+            </div>
+          </div>
+          <a href="#book" class="pov-btn btn-book" style="width: 240px;">
+            <div class="btn-inner">
+              <div class="icon">
+                <svg viewBox="0 0 22 22" fill="none">
+                  <rect x="1" y="6" width="20" height="14" rx="1.5" fill="none" stroke="white" stroke-width="1.2" />
+                  <path d="M7 6 L8.5 3 L13.5 3 L15 6" fill="none" stroke="white" stroke-width="1.2" />
+                  <g class="cam-lens">
+                    <circle cx="11" cy="13" r="4.5" fill="none" stroke="white" stroke-width="1.2" />
+                  </g>
+                  <g class="cam-aperture">
+                    <circle cx="11" cy="13" r="2" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1" />
+                    <line x1="11" y1="11.2" x2="11" y2="10" stroke="rgba(255,255,255,.5)" stroke-width=".7" />
+                    <line x1="11" y1="14.8" x2="11" y2="16" stroke="rgba(255,255,255,.5)" stroke-width=".7" />
+                    <line x1="9.2" y1="13" x2="8" y2="13" stroke="rgba(255,255,255,.5)" stroke-width=".7" />
+                    <line x1="12.8" y1="13" x2="14" y2="13" stroke="rgba(255,255,255,.5)" stroke-width=".7" />
+                  </g>
+                  <circle cx="17" cy="9" r="1" fill="rgba(255,255,255,.4)" />
+                </svg>
+              </div>
+              <span class="label">Book Your Shoot</span>
+            </div>
+          </a>
+        </div>
+        <div class="coverage-map">
+
+          <iframe loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=40.3882926,-74.7615763&z=13&output=embed">
+          </iframe>
+
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <!-- Coverage -->
+  <!-- Our story -->
+  <section class="cta-section" id="our-story">
+    <div class="container">
+      <div class="cta-inner story-inner">
+        <div>
+          <h2>Meet the Crew<br /><em>Our Story</em></h2>
+          <p data-content-id="story_text">
+            After a lifetime of friendship & two decades of combined content creation, Phase One Visuals went from
+            imagination to creation in 2026. As chameleons of the photo & video space, the founders learned to adapt to
+            our clients’ wants & needs. Without compromising quality & building countless business relationships, we
+            created something bigger than we realized—a passion fueled desire to bring the utmost quality real estate &
+            construction content to life.
+          </p>
+          <p><strong>TLDR:</strong> We built Phase One Visuals because we were tired of seeing great projects
+            represented by average media. ¯\_(ツ)_/¯</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Our story -->
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <!-- <a href="#" class="nav-logo">
+              <img src="/assets/img/logo.png" alt="">
+            </a> -->
+            <div class="nav-footer-logo-text">
+              <p class="phase-one">PHASE ONE</p>
+              <p class="visuals">VISUALS</p>
+            </div>
+          </div>
+          <p>Professional real estate and construction media crafted to present properties with clarity, balance, and
+            consistency. Based in Hopewell, NJ.</p>
+        </div>
+        <!-- <div class="footer-col">
+          <h5>QUICK LINKS</h5>
+          <ul>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="#">Listing Media</a></li>
+            <li><a href="#book">Contact</a></li>
+          </ul>
+        </div> -->
+        <!-- <div class="footer-col">
+          <h5>SOCIALS</h5>
+          <ul>
+            <li><a href="#">YouTube</a></li>
+            <li><a href="#">Discord</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Twitter / X</a></li>
+          </ul>
+        </div> -->
+
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Phase One Visuals · All rights reserved · Hopewell, NJ</p>
+        <div style="display:flex; gap:20px;">
+          <a href="https://docs.google.com/document/d/1eO--miKsOq7zfbsfv0j15ltr9Au4FbM1uxVdrEusEcI/edit?tab=t.0">Privacy
+            Policy</a>
+          <a href="https://docs.google.com/document/d/1eO--miKsOq7zfbsfv0j15ltr9Au4FbM1uxVdrEusEcI/edit?tab=t.0">Terms
+            of Service</a>
+          <!-- <a href="#">Licensing</a> -->
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Footer -->
+  <!-- Firebase Core SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
+
+  <button id="scroll-to-top" class="scroll-top-btn" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+      stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- My Logic -->
+  <script src="/assets/js/firebase-config.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/content-manager.js"></script>
+</body>
+
+</html>
