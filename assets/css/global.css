@@ -1002,9 +1002,11 @@ section {
 /* Modal responsive */
 @media (max-width: 600px) {
   .booking-modal {
-    padding: 28px 16px 26px;
-    max-width: 520px;
-    border-radius: 12px;
+    padding: 12px 12px 12px;
+    max-width: 92vw;
+    border-radius: 10px;
+    overflow-y: visible;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.18);
   }
 
   .booking-modal-options {
@@ -1013,15 +1015,14 @@ section {
   }
 
   .booking-modal-header h3 {
-    font-size: 22px;
+    font-size: 18px;
   }
-
   .booking-cons-actions {
     flex-direction: column;
   }
 
   .booking-option {
-    padding: 18px 14px;
+    padding: 10px 10px;
   }
 
   .booking-option h4 {
@@ -1033,13 +1034,21 @@ section {
     height: 48px;
   }
 
-  .booking-option-icon svg { width: 32px; height: 32px; }
+  .booking-option-icon svg { width: 28px; height: 28px; }
 
   .booking-modal-close {
-    top: 10px;
-    right: 10px;
+    top: 8px;
+    right: 8px;
     padding: 6px;
   }
+
+  .booking-modal-header p { font-size: 12px; }
+
+  .booking-option h4 { font-size: 15px; }
+
+  .booking-option p { font-size: 12px; line-height:1.2; }
+
+  .booking-option-cta { font-size: 11px; }
 }
 
 .booking-modal-header {
