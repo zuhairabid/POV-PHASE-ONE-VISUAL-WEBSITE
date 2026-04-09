@@ -813,7 +813,7 @@ section {
   box-sizing: border-box;
   max-width: 740px;
   width: 100%;
-  padding: 44px 40px 40px;
+  padding: 56px 40px 52px;
   max-height: calc(100vh - 64px);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -829,16 +829,16 @@ section {
 
 .booking-modal-close {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 18px;
+  right: 18px;
   background: none;
   border: none;
   cursor: pointer;
   color: var(--slate);
-  padding: 6px;
+  padding: 8px;
   border-radius: 50%;
   transition: color 0.2s, background 0.2s;
-  z-index: 2;
+  z-index: 6;
 }
 
 .booking-modal-close:hover {
@@ -1002,7 +1002,7 @@ section {
 /* Modal responsive */
 @media (max-width: 600px) {
   .booking-modal {
-    padding: 20px 16px 18px;
+    padding: 28px 16px 26px;
     max-width: 520px;
     border-radius: 12px;
   }
@@ -1034,6 +1034,17 @@ section {
   }
 
   .booking-option-icon svg { width: 32px; height: 32px; }
+
+  .booking-modal-close {
+    top: 10px;
+    right: 10px;
+    padding: 6px;
+  }
+}
+
+.booking-modal-header {
+  padding-top: 6px;
+  padding-bottom: 22px;
 }
 
 /* Modal-specific scrollbar (subtle) */
