@@ -99,6 +99,61 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   });
 });
 
+// --- BOOKING MODAL ---
+(function () {
+  const modal = document.getElementById('bookingModal');
+  const closeBtn = document.getElementById('bookingModalClose');
+  const consFormBtn = document.getElementById('bookingConsForm');
+
+  if (!modal) return;
+
+  function openModal(e) {
+    e.preventDefault();
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Intercept all "Book" buttons (btn-book class)
+  document.querySelectorAll('.btn-book').forEach(function (btn) {
+    btn.addEventListener('click', openModal);
+  });
+
+  // Close button
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  // Close on overlay click
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) closeModal();
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+
+  // Construction "Request a Quote" scrolls to contact form
+  if (consFormBtn) {
+    consFormBtn.addEventListener('click', function () {
+      closeModal();
+      var bookSection = document.getElementById('book');
+      if (bookSection) {
+        setTimeout(function () {
+          bookSection.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+      }
+    });
+  }
+})();
+
 
 
 //process section
