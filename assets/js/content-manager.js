@@ -5,8 +5,35 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof db !== 'undefined') {
         fetchSiteContent();
         fetchPricing();
+    } else {
+        // Firestore not available (fallback) — render sample pricing so UI isn't empty
+        renderPricingFallback();
     }
 });
+
+// Render simple fallback pricing so users see pricing even if Firestore fails
+function renderPricingFallback() {
+    const sample = {
+        cards: [
+            { name: 'Basic', tagline: '$199', features: ['Interior photos', 'MLS-ready'], featured: false },
+            { name: 'Standard', tagline: '$349', features: ['Interior + Exterior', 'Drone photo'], featured: true },
+            { name: 'Premium', tagline: '$599', features: ['Video tour', 'Twilight edits'], featured: false }
+        ],
+        table: {
+            headers: ['Property Size', 'Basic', 'Standard'],
+            rows: [
+                { cells: ['Studio / 1BR', '$199', '$249'] },
+                { cells: ['2-3 BR', '$249', '$349'] },
+                { cells: ['4+ BR', '$349', '$499'] }
+            ]
+        },
+        addons: [ { name: 'Aerial Photos', price: '$75' }, { name: 'Twilight Edit', price: '$50' } ]
+    };
+
+    renderPricingCategory('residential', sample);
+    renderPricingCategory('str', sample);
+    renderPricingCategory('construction', sample);
+}
 
 function fetchSiteContent() {
     db.collection('site_content').get().then((querySnapshot) => {
