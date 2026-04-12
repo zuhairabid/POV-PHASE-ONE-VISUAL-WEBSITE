@@ -89,11 +89,81 @@ function fetchSiteContent() {
 
 function fetchPricing() {
     const categories = ['residential', 'str', 'construction'];
+
+    const staticData = {
+        residential: {
+            cards: [
+                { name: 'Essential', tagline: 'Starting at $199', features: ['25 HDR Interior Photos', 'Exterior Photos', 'MLS-Ready Delivery', '48hr Turnaround'], featured: false },
+                { name: 'Standard', tagline: 'Starting at $349', features: ['35 HDR Photos', 'Drone Aerial Photos', 'Property Video Tour', 'Branded Gallery Site'], featured: true },
+                { name: 'Premium', tagline: 'Starting at $599', features: ['50 HDR Photos', 'Cinematic Video', 'Twilight Edits', 'Express 24hr Delivery'], featured: false }
+            ],
+            table: {
+                headers: ['Property Size', 'Essential', 'Standard', 'Premium'],
+                rows: [
+                    { cells: ['Studio / 1BR', '$199', '$299', '$449'] },
+                    { cells: ['2–3 Bedrooms', '$249', '$349', '$549'] },
+                    { cells: ['4–5 Bedrooms', '$299', '$449', '$649'] },
+                    { cells: ['6+ / Luxury', 'Custom', '$599', '$799'] }
+                ]
+            },
+            addons: [
+                { name: 'Aerial Drone Photos', price: '$75' },
+                { name: 'Twilight / Dusk Edit', price: '$50' },
+                { name: 'Virtual Staging (per room)', price: '$35' },
+                { name: 'Floor Plan', price: '$99' }
+            ]
+        },
+        str: {
+            cards: [
+                { name: 'Starter', tagline: 'Starting at $249', features: ['20 Styled Photos', 'Airbnb-Ready Edit', 'Quick Turnaround'], featured: false },
+                { name: 'Pro', tagline: 'Starting at $399', features: ['35 Styled Photos', 'Video Walkthrough', 'Branded Gallery'], featured: true },
+                { name: 'Elite', tagline: 'Starting at $599', features: ['50+ Photos', 'Cinematic Reel', 'Social Media Clips'], featured: false }
+            ],
+            table: {
+                headers: ['Unit Size', 'Starter', 'Pro', 'Elite'],
+                rows: [
+                    { cells: ['Studio', '$249', '$349', '$499'] },
+                    { cells: ['1–2 Bed', '$299', '$399', '$549'] },
+                    { cells: ['3+ Bed', '$349', '$499', '$649'] }
+                ]
+            },
+            addons: [
+                { name: 'Social Media Reel', price: '$100' },
+                { name: 'Aerial Drone', price: '$75' },
+                { name: 'Virtual Staging', price: '$35/room' }
+            ]
+        },
+        construction: {
+            cards: [
+                { name: 'Progress', tagline: 'Starting at $299', features: ['Site Progress Photos', 'Before & After Series', 'Contractor-Ready Files'], featured: false },
+                { name: 'Documentation', tagline: 'Starting at $499', features: ['Full Site Coverage', 'Aerial Drone Photos', 'Timestamped Archive'], featured: true },
+                { name: 'Marketing', tagline: 'Starting at $799', features: ['Hero Photos & Video', 'Drone Cinematic', 'Brand-Ready Gallery'], featured: false }
+            ],
+            table: {
+                headers: ['Project Type', 'Progress', 'Documentation', 'Marketing'],
+                rows: [
+                    { cells: ['Residential Build', '$299', '$499', '$749'] },
+                    { cells: ['Commercial / Mixed', '$399', '$599', '$899'] },
+                    { cells: ['Infrastructure', '$499', '$749', 'Custom'] }
+                ]
+            },
+            addons: [
+                { name: 'Monthly Retainer (4 visits)', price: '$999/mo' },
+                { name: 'Aerial Progress Video', price: '$150' },
+                { name: 'Time-Lapse Setup', price: 'Custom' }
+            ]
+        }
+    };
+
     categories.forEach(cat => {
         db.collection('pricing').doc(cat).get().then(doc => {
             if (doc.exists) {
                 renderPricingCategory(cat, doc.data());
+            } else {
+                renderPricingCategory(cat, staticData[cat]);
             }
+        }).catch(() => {
+            renderPricingCategory(cat, staticData[cat]);
         });
     });
 }

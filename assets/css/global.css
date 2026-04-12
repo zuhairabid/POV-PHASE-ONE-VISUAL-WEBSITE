@@ -74,12 +74,16 @@ a{
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--mist);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--gold);
+  background: rgba(0, 0, 0, 0.15);
   border-radius: 10px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
 }
 
 /* ─── ANIMATIONS ─── */

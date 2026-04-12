@@ -5,7 +5,8 @@ nav {
   right: 0;
   height: 72px;
   background: var(--nav-bg);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--divider);
   display: flex;
   align-items: center;
@@ -13,7 +14,20 @@ nav {
   padding: 0 60px;
   z-index: 1000;
   transition: box-shadow 0.3s, background-color 0.4s, border-color 0.4s;
-  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  box-shadow: rgba(17, 12, 46, 0.08) 0px 4px 24px 0px;
+}
+
+/* Gold accent line at nav bottom */
+nav::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 60px;
+  right: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.35;
+  pointer-events: none;
 }
 
 nav.scrolled {
@@ -51,39 +65,59 @@ nav.scrolled {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 36px;
+  gap: 6px;
   list-style: none;
 }
 
+/* ── Pill button nav links ── */
 .nav-links a:not(.pov-btn) {
   text-decoration: none;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 500;
   color: var(--slate);
-  letter-spacing: 0.5px;
-  transition: color 0.2s;
+  letter-spacing: 0.4px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid transparent;
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  transition: color 0.2s, background 0.2s, border-color 0.2s, gap 0.2s;
+  white-space: nowrap;
 }
 
-.nav-links a:not(.pov-btn)::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: var(--gold);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.25s;
+/* Emoji that slides in before the text on hover */
+.nav-links a[data-emoji]::before {
+  content: attr(data-emoji);
+  display: inline-block;
+  font-size: 11px;
+  line-height: 1;
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.6) translateX(-2px);
+  transition: max-width 0.22s ease, opacity 0.22s ease, transform 0.22s ease, margin 0.22s ease;
+  margin-right: 0;
+}
+
+.nav-links a[data-emoji]:hover::before {
+  max-width: 20px;
+  opacity: 1;
+  transform: scale(1) translateX(0);
+  margin-right: 5px;
 }
 
 .nav-links a:not(.pov-btn):hover {
   color: var(--black);
+  background: var(--mist);
+  border-color: var(--divider);
+  gap: 2px;
 }
 
-.nav-links a:not(.pov-btn):hover::after {
-  transform: scaleX(1);
+/* Remove the old underline pseudo-element */
+.nav-links a:not(.pov-btn)::after {
+  display: none;
 }
 
 
