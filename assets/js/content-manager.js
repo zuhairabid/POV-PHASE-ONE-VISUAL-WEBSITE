@@ -92,65 +92,77 @@ function fetchPricing() {
 
     const staticData = {
         residential: {
+            displayType: "cards+table",
             cards: [
-                { name: 'Essential', tagline: 'Starting at $199', features: ['25 HDR Interior Photos', 'Exterior Photos', 'MLS-Ready Delivery', '48hr Turnaround'], featured: false },
-                { name: 'Standard', tagline: 'Starting at $349', features: ['35 HDR Photos', 'Drone Aerial Photos', 'Property Video Tour', 'Branded Gallery Site'], featured: true },
-                { name: 'Premium', tagline: 'Starting at $599', features: ['50 HDR Photos', 'Cinematic Video', 'Twilight Edits', 'Express 24hr Delivery'], featured: false }
+                { name: "Base Stills", tagline: "Photography Only", features: ["Professional HDR Photography", "Custom Property Marketing Website", "24hr Stills Delivery"] },
+                { name: "The Essential", tagline: "Stills + Floor Plan", features: ["Everything in Base Stills", "Marketing 2D Floor Plan"] },
+                { name: "The Pro Package", tagline: "Full Media Suite", features: ["Everything in Essential", "MLS Walkthrough Video", "Vertical Social Reel"], featured: true },
+                { name: "The Signature", tagline: "Complete Package", features: ["Everything in Pro Package", "360° Interactive Tour", "6-Month Hosted Link"] }
             ],
             table: {
-                headers: ['Property Size', 'Essential', 'Standard', 'Premium'],
+                headers: ["Property Size", "Base Stills", "The Essential", "The Pro Package", "The Signature"],
                 rows: [
-                    { cells: ['Studio / 1BR', '$199', '$299', '$449'] },
-                    { cells: ['2–3 Bedrooms', '$249', '$349', '$549'] },
-                    { cells: ['4–5 Bedrooms', '$299', '$449', '$649'] },
-                    { cells: ['6+ / Luxury', 'Custom', '$599', '$799'] }
+                    { cells: ["0 – 1,000 sq ft", "$200", "$280", "$465", "$625"] },
+                    { cells: ["1,001 – 2,000 sq ft", "$250", "$330", "$515", "$675"] },
+                    { cells: ["2,001 – 3,000 sq ft", "$300", "$380", "$565", "$725"] },
+                    { cells: ["3,001 – 4,000 sq ft", "$350", "$430", "$615", "$775"] }
                 ]
             },
             addons: [
-                { name: 'Aerial Drone Photos', price: '$75' },
-                { name: 'Twilight / Dusk Edit', price: '$50' },
-                { name: 'Virtual Staging (per room)', price: '$35' },
-                { name: 'Floor Plan', price: '$99' }
+                { name: "Vacant Home Refresh (1 Twilight + 3 Staged Images)", price: "$115" },
+                { name: "Virtual Staging — per image", price: "$40" },
+                { name: "Virtual Staging — 3-image set", price: "$100" },
+                { name: "Virtual Twilight — per image", price: "$30" },
+                { name: "360° Interactive Tour (6-month hosting)", price: "$185" },
+                { name: "Same-Day Delivery (Stills only, by 8PM)", price: "$50" }
             ]
         },
         str: {
+            displayType: "cards+table",
             cards: [
-                { name: 'Starter', tagline: 'Starting at $249', features: ['20 Styled Photos', 'Airbnb-Ready Edit', 'Quick Turnaround'], featured: false },
-                { name: 'Pro', tagline: 'Starting at $399', features: ['35 Styled Photos', 'Video Walkthrough', 'Branded Gallery'], featured: true },
-                { name: 'Elite', tagline: 'Starting at $599', features: ['50+ Photos', 'Cinematic Reel', 'Social Media Clips'], featured: false }
+                { name: "STR Base", tagline: "Hospitality Media", features: ["Wide-Angle Room Coverage", "Curated Amenity Details", "Property Marketing Website"] },
+                { name: "STR Essential", tagline: "Base + Floor Plan", features: ["Everything in STR Base", "Marketing 2D Floor Plan"], featured: true },
+                { name: "STR Performance", tagline: "Full STR Media Suite", features: ["Everything in STR Essential", "MLS Walkthrough Video", "Vertical Social Reel"] }
             ],
             table: {
-                headers: ['Unit Size', 'Starter', 'Pro', 'Elite'],
+                headers: ["Property Size", "STR Base", "STR Essential", "STR Performance"],
                 rows: [
-                    { cells: ['Studio', '$249', '$349', '$499'] },
-                    { cells: ['1–2 Bed', '$299', '$399', '$549'] },
-                    { cells: ['3+ Bed', '$349', '$499', '$649'] }
+                    { cells: ["0 – 1,000 sq ft", "$295", "$375", "$560"] },
+                    { cells: ["1,001 – 2,000 sq ft", "$350", "$430", "$615"] },
+                    { cells: ["2,001 – 3,000 sq ft", "$425", "$505", "$690"] },
+                    { cells: ["3,001 – 4,000 sq ft", "$495", "$575", "$760"] }
                 ]
             },
             addons: [
-                { name: 'Social Media Reel', price: '$100' },
-                { name: 'Aerial Drone', price: '$75' },
-                { name: 'Virtual Staging', price: '$35/room' }
+                { name: "Marketing 2D Floor Plan", price: "$115" },
+                { name: "MLS Walkthrough Video (Horizontal)", price: "$175" },
+                { name: "Social Media Reel (Vertical)", price: "$155" },
+                { name: "Video Bundle (Walkthrough + Reel)", price: "$275" },
+                { name: "Virtual Twilight — per image", price: "$35" },
+                { name: "Virtual Staging — per image", price: "$45" }
             ]
         },
         construction: {
+            displayType: "cards+table",
             cards: [
-                { name: 'Progress', tagline: 'Starting at $299', features: ['Site Progress Photos', 'Before & After Series', 'Contractor-Ready Files'], featured: false },
-                { name: 'Documentation', tagline: 'Starting at $499', features: ['Full Site Coverage', 'Aerial Drone Photos', 'Timestamped Archive'], featured: true },
-                { name: 'Marketing', tagline: 'Starting at $799', features: ['Hero Photos & Video', 'Drone Cinematic', 'Brand-Ready Gallery'], featured: false }
+                { name: "Standard Visit", tagline: "Single Progress Visit", features: ["Exterior overview", "Up to 3 designated rooms", "Professional post-editing", "Secure digital delivery", "48-hour turnaround"] },
+                { name: "Best Value", tagline: "Transformation Package", features: ["Two scheduled visits", "Before & After comparison formatting", "Organized milestone delivery"], featured: true },
+                { name: "Multi-Visit", tagline: "3-Visit Plan", features: ["Three scheduled visits", "Standard scope per visit", "Flexible milestone scheduling"] },
+                { name: "Full Documentation", tagline: "5-Visit Plan", features: ["Five milestone visits", "Comprehensive project coverage", "Standard scope per visit"] }
             ],
             table: {
-                headers: ['Project Type', 'Progress', 'Documentation', 'Marketing'],
+                headers: ["Plan Type", "Standard Visit", "Transformation", "3-Visit Plan", "5-Visit Plan"],
                 rows: [
-                    { cells: ['Residential Build', '$299', '$499', '$749'] },
-                    { cells: ['Commercial / Mixed', '$399', '$599', '$899'] },
-                    { cells: ['Infrastructure', '$499', '$749', 'Custom'] }
+                    { cells: ["Number of Visits", "1 Visit", "2 Visits", "3 Visits", "5 Visits"] },
+                    { cells: ["Base Price", "$300", "$525", "$800", "$1,200"] },
+                    { cells: ["Additional Rooms", "$50 / room", "$50 / room", "$50 / room", "$50 / room"] }
                 ]
             },
             addons: [
-                { name: 'Monthly Retainer (4 visits)', price: '$999/mo' },
-                { name: 'Aerial Progress Video', price: '$150' },
-                { name: 'Time-Lapse Setup', price: 'Custom' }
+                { name: "Project Walkthrough Video (4K Horizontal)", price: "$200" },
+                { name: "Social Highlight Reel (Vertical 30–60s)", price: "$200" },
+                { name: "360° Interactive Capture", price: "$200" },
+                { name: "Standalone 360° Visit", price: "$300" }
             ]
         }
     };
